@@ -1,0 +1,81 @@
+﻿<style>
+    .header-bg {
+        background-color: #234ee8;
+    }
+
+    .header-btn {
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        border-radius: 0;
+    }
+
+        .header-btn:hover, .header-btn:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+    .category-menu {
+        background-color: #3b5bdb;
+        width: 250px;
+        border: none;
+        border-radius: 0;
+    }
+
+    .category-item {
+        color: white;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 10px 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: 0.2s;
+    }
+
+    .category-menu li:last-child .category-item {
+        border-bottom: none;
+    }
+
+    .category-item:hover {
+        background-color: #4c6ef5;
+        color: white;
+    }
+</style>
+
+<header class="header-bg py-2" style="position: relative; z-index: 1050;">
+    <div class="container-fluid">
+        <div class="d-flex align-items-center justify-content-between">
+
+            <div class="d-flex align-items-center gap-3">
+                <div class="dropdown">
+                    <button class="btn header-btn px-2 py-1" type="button" id="categoryMenuBtn" data-bs-toggle="dropdown" data-bs-offset="0,8" aria-expanded="false">
+                        <i class="bi bi-list fs-3"></i>
+                    </button>
+                    <ul class="dropdown-menu p-0 category-menu" aria-labelledby="categoryMenuBtn">
+                        <li><a class="dropdown-item category-item" href="#">Danh mục 1 <i class="bi bi-chevron-double-right ms-2"></i></a></li>
+                        <li><a class="dropdown-item category-item" href="#">Danh mục 2 <i class="bi bi-chevron-double-right ms-2"></i></a></li>
+                    </ul>
+                </div>
+                <button class="btn header-btn d-flex align-items-center gap-4 px-3 py-2" type="button">
+                    <i class="bi bi-geo-alt"></i>
+                    <i class="bi bi-chevron-down ms-2" style="font-size: 0.8em;"></i>
+                </button>
+            </div>
+
+            <div class="flex-grow-1 mx-5" style="max-width: 600px;">
+                <form class="input-group">
+                    <input type="text" class="form-control rounded-0 border-0" placeholder="Tìm kiếm..." aria-label="Search">
+                    <button class="btn header-btn px-3" type="button">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </form>
+            </div>
+
+            <div class="d-flex align-items-center gap-2">
+                <button class="btn header-btn p-2 px-3"><i class="bi bi-cart fs-5"></i></button>
+                <button class="btn header-btn p-2 px-3"><i class="bi bi-box-arrow-in-right fs-5"></i></button>
+            </div>
+
+        </div>
+    </div>
+</header>

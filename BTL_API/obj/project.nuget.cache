@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "ndU9pzTkg4I=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Duck\\Downloads\\BTL_API-20260324T135218Z-1-001\\BTL_API\\BTL_API.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Duck\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\9.0.12\\microsoft.windowsdesktop.app.ref.9.0.12.nupkg.sha512",
+    "C:\\Users\\Duck\\.nuget\\packages\\microsoft.netcore.app.ref\\9.0.12\\microsoft.netcore.app.ref.9.0.12.nupkg.sha512",
+    "C:\\Users\\Duck\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\9.0.12\\microsoft.aspnetcore.app.ref.9.0.12.nupkg.sha512",
+    "C:\\Users\\Duck\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\9.0.12\\microsoft.netcore.app.host.win-x64.9.0.12.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,195 @@
+D:\Visual Studio\API\BTL_API\bin\Debug\net9.0\appsettings.Development.json
+D:\Visual Studio\API\BTL_API\bin\Debug\net9.0\appsettings.json
+D:\Visual Studio\API\BTL_API\bin\Debug\net9.0\BTL_API.staticwebassets.runtime.json
+D:\Visual Studio\API\BTL_API\bin\Debug\net9.0\BTL_API.staticwebassets.endpoints.json
+D:\Visual Studio\API\BTL_API\bin\Debug\net9.0\BTL_API.exe
+D:\Visual Studio\API\BTL_API\bin\Debug\net9.0\BTL_API.deps.json
+D:\Visual Studio\API\BTL_API\bin\Debug\net9.0\BTL_API.runtimeconfig.json
+D:\Visual Studio\API\BTL_API\bin\Debug\net9.0\BTL_API.dll
+D:\Visual Studio\API\BTL_API\bin\Debug\net9.0\BTL_API.pdb
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\rpswa.dswa.cache.json
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\BTL_API.GeneratedMSBuildEditorConfig.editorconfig
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\BTL_API.AssemblyInfoInputs.cache
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\BTL_API.AssemblyInfo.cs
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\BTL_API.csproj.CoreCompileInputs.cache
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\BTL_API.MvcApplicationPartsAssemblyInfo.cache
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\BTL_API.RazorAssemblyInfo.cache
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\BTL_API.RazorAssemblyInfo.cs
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\rjimswa.dswa.cache.json
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\scopedcss\bundle\BTL_API.styles.css
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\scopedcss\projectbundle\BTL_API.bundle.scp.css
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\53j4f1oizr-b9sayid5wm.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\7ufxt176s1-61n19gt1b8.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\r14e5xv4am-xtxxf3hu2r.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\wy2jakx9kp-bqjiyaj88i.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\q9jvdn6p8b-c2jlpeoesf.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\tueb68wv21-erw9l3u2r3.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\d1mgrvz0be-aexeepp0ev.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\v4mng6mk5a-d7shbmvgxk.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\jdb1rdnrzh-ausgxo2sd3.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\qwyrmlh8kv-k8d9w2qqmf.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\fdqszr3cho-cosvhxvwiu.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\w45illmul8-ub07r2b239.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\j9qgk8vvvo-fvhpjtyr6v.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\tnqib9d0jy-b7pk76d08c.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\5xdgi09r37-fsbi9cje9m.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\h72yb1n0ua-rzd6atqjts.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\zr7i6afwt5-ee0r1s7dh0.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\jngywj60js-dxx9fxp4il.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\grwwyp5w4q-jd9uben2k1.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\wuecluty6s-khv3u5hwcm.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\n84ez2d3ih-r4e9w2rdcm.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\ebxjw5kr4d-lcd1t2u6c8.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\4vgrx0g2k9-c2oey78nd0.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\sow2rmnkox-tdbxkamptv.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\ru7pe0zay2-j5mq2jizvt.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\4d8te5nh7k-06098lyss8.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\2sqjpss9uz-nvvlpmu67g.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\rxbhtddffm-s35ty4nyc5.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\buf6vv4xwf-pj5nd1wqec.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\k3y01mdcp8-46ein0sx1k.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\rivci9amcc-v0zj4ognzu.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\jnjxudx38h-37tfw0ft22.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\egr31p3umc-hrwsygsryq.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\ezlojbpfn8-pk9g2wxc8p.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\mgsiv1oyut-ft3s53vfgj.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\yj5h5ktwg2-6cfz1n2cew.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\2iyabrzphf-6pdc2jztkx.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\nwycrszt8n-493y06b0oq.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\461ige66p5-iovd86k7lj.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\jkb1j40dmp-vr1egmr9el.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\dnu9hn31j7-kbrnm935zg.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\4v661azg00-jj8uyg4cgr.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\nqmmt6xd92-y7v9cxd14o.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\6bcbd0mtl0-notf2xhcfb.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\5s3360zw14-h1s4sie4z3.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\u2cdv6i38u-63fj8s7r0e.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\234zm219xv-0j3bgjxly4.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\bajhs7pqiv-47otxtyo56.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\74eq64f66t-4v8eqarkd7.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\mfeky368vp-356vix0kms.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\f9q1wzkihr-83jwlth58m.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\jxoypxjzo6-mrlpezrjn3.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\ycb4ct00ry-lzl9nlhx6b.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\jrhbetmv5a-ag7o75518u.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\ktm1h9d8fu-x0q3zqp4vz.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\lfybr7pb6a-0i3buxo5is.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\3i2jhr6kgh-o1o13a6vjx.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\jg5h4503pk-ttgo8qnofa.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\skrsd9bwxy-2z0ns9nrw6.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\58c8ozmc4n-muycvpuwrr.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\hhbnq33fd4-87fc7y1x7t.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\0bms5t8e0o-mlv21k5csn.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\wn2pnpq5a0-1z7assaay5.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\compressed\bl2cjkwt7t-1z7assaay5.gz
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\staticwebassets.build.json
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\staticwebassets.build.json.cache
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\staticwebassets.development.json
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\staticwebassets.build.endpoints.json
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\BTL_API.dll
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\refint\BTL_API.dll
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\BTL_API.pdb
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\BTL_API.genruntimeconfig.cache
+D:\Visual Studio\API\BTL_API\obj\Debug\net9.0\ref\BTL_API.dll
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\bin\Debug\net9.0\appsettings.Development.json
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\bin\Debug\net9.0\appsettings.json
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\bin\Debug\net9.0\BTL_API.staticwebassets.runtime.json
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\bin\Debug\net9.0\BTL_API.staticwebassets.endpoints.json
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\bin\Debug\net9.0\BTL_API.exe
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\bin\Debug\net9.0\BTL_API.deps.json
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\bin\Debug\net9.0\BTL_API.runtimeconfig.json
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\bin\Debug\net9.0\BTL_API.dll
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\bin\Debug\net9.0\BTL_API.pdb
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\rpswa.dswa.cache.json
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\BTL_API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\BTL_API.AssemblyInfoInputs.cache
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\BTL_API.AssemblyInfo.cs
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\BTL_API.csproj.CoreCompileInputs.cache
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\BTL_API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\BTL_API.RazorAssemblyInfo.cache
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\BTL_API.RazorAssemblyInfo.cs
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\rjimswa.dswa.cache.json
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\scopedcss\bundle\BTL_API.styles.css
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\scopedcss\projectbundle\BTL_API.bundle.scp.css
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\4l6mgjyp3g-{0}-b9sayid5wm-b9sayid5wm.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\q6dvqsvh9f-{0}-61n19gt1b8-61n19gt1b8.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\brj14j3utq-{0}-xtxxf3hu2r-xtxxf3hu2r.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\df6ysog9rl-{0}-bqjiyaj88i-bqjiyaj88i.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\t1a630tu9l-{0}-c2jlpeoesf-c2jlpeoesf.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\sh7sociwmt-{0}-erw9l3u2r3-erw9l3u2r3.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\uns6vnek3b-{0}-aexeepp0ev-aexeepp0ev.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\7msp2h08cj-{0}-d7shbmvgxk-d7shbmvgxk.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\gqa1yzb25b-{0}-ausgxo2sd3-ausgxo2sd3.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\kkeidz7hsz-{0}-k8d9w2qqmf-k8d9w2qqmf.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\f53igjmmr9-{0}-cosvhxvwiu-cosvhxvwiu.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\o7jaiajytz-{0}-ub07r2b239-ub07r2b239.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\90gsi7h6gq-{0}-fvhpjtyr6v-fvhpjtyr6v.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\qm81rs3nez-{0}-b7pk76d08c-b7pk76d08c.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\90sck9ohtf-{0}-fsbi9cje9m-fsbi9cje9m.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\h03ilf62bg-{0}-rzd6atqjts-rzd6atqjts.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\k64fnyuuq8-{0}-ee0r1s7dh0-ee0r1s7dh0.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\2jejjq0l8l-{0}-dxx9fxp4il-dxx9fxp4il.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\l9wnbp5ghg-{0}-jd9uben2k1-jd9uben2k1.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\gvrjo0rput-{0}-khv3u5hwcm-khv3u5hwcm.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\n5me1358g9-{0}-r4e9w2rdcm-r4e9w2rdcm.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\mchr48rnca-{0}-lcd1t2u6c8-lcd1t2u6c8.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\d04kqmra4n-{0}-c2oey78nd0-c2oey78nd0.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\wbh38vb0fd-{0}-tdbxkamptv-tdbxkamptv.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\i53ol5mkbv-{0}-j5mq2jizvt-j5mq2jizvt.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\7850lm81ek-{0}-06098lyss8-06098lyss8.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\5mb29b2sf3-{0}-nvvlpmu67g-nvvlpmu67g.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\dlfknpffkp-{0}-s35ty4nyc5-s35ty4nyc5.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\cicr60uxtw-{0}-pj5nd1wqec-pj5nd1wqec.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\2b8ef6p3ri-{0}-46ein0sx1k-46ein0sx1k.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\i2xt60mf78-{0}-v0zj4ognzu-v0zj4ognzu.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\xi4fwjq5xp-{0}-37tfw0ft22-37tfw0ft22.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\5wybrzr7la-{0}-hrwsygsryq-hrwsygsryq.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\4iby9gjtwa-{0}-pk9g2wxc8p-pk9g2wxc8p.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\1d4qqjakpk-{0}-ft3s53vfgj-ft3s53vfgj.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\pce1grihr1-{0}-6cfz1n2cew-6cfz1n2cew.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\rqevebyq1s-{0}-6pdc2jztkx-6pdc2jztkx.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\cokf0wp7cj-{0}-493y06b0oq-493y06b0oq.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\ebqgpb0n9d-{0}-iovd86k7lj-iovd86k7lj.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\kjotgqxpc2-{0}-vr1egmr9el-vr1egmr9el.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\np9d71fw67-{0}-kbrnm935zg-kbrnm935zg.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\qqomm4j2zm-{0}-jj8uyg4cgr-jj8uyg4cgr.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\mjwst5bk2e-{0}-y7v9cxd14o-y7v9cxd14o.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\5ys5uu5wn5-{0}-notf2xhcfb-notf2xhcfb.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\msd7um0c5g-{0}-h1s4sie4z3-h1s4sie4z3.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\y2ww9eexc7-{0}-63fj8s7r0e-63fj8s7r0e.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\tit35rqzm9-{0}-0j3bgjxly4-0j3bgjxly4.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\knw25eas6u-{0}-47otxtyo56-47otxtyo56.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\3aeldu2mfh-{0}-4v8eqarkd7-4v8eqarkd7.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\7eb8ewy8cu-{0}-356vix0kms-356vix0kms.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\oh9xuhxud7-{0}-83jwlth58m-83jwlth58m.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\ktayr2vs2r-{0}-mrlpezrjn3-mrlpezrjn3.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\pivf4v6mm2-{0}-lzl9nlhx6b-lzl9nlhx6b.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\5ekaqkqlro-{0}-ag7o75518u-ag7o75518u.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\eybfiypthx-{0}-x0q3zqp4vz-x0q3zqp4vz.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\k5d5y15i6s-{0}-0i3buxo5is-0i3buxo5is.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\nst90i7p3h-{0}-o1o13a6vjx-o1o13a6vjx.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\zqr75mukyn-{0}-ttgo8qnofa-ttgo8qnofa.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\7ms0i98zb0-{0}-2z0ns9nrw6-2z0ns9nrw6.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\3m56o51haa-{0}-muycvpuwrr-muycvpuwrr.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\8rtgflxe66-{0}-87fc7y1x7t-87fc7y1x7t.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\bf06kw3o6p-{0}-mlv21k5csn-mlv21k5csn.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\g2l2i3pvjv-{0}-fzpl6kz0a2-fzpl6kz0a2.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\compressed\dklqfenh2b-{0}-fzpl6kz0a2-fzpl6kz0a2.gz
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\staticwebassets.build.json
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\staticwebassets.build.json.cache
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\staticwebassets.development.json
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\staticwebassets.build.endpoints.json
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\swae.build.ex.cache
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\BTL_API.dll
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\refint\BTL_API.dll
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\BTL_API.pdb
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\BTL_API.genruntimeconfig.cache
+C:\Users\Duck\Downloads\BTL_API-20260324T135218Z-1-001\BTL_API\obj\Debug\net9.0\ref\BTL_API.dll
