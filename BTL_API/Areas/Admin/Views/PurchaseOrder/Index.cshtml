@@ -1,0 +1,134 @@
+﻿@{
+    ViewData["Title"] = "Quản lý Phiếu nhập kho";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<h2 class="mt-4" style="color: #0a2551; font-weight: 600;">Danh sách Phiếu nhập kho</h2>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item"><a href="#" style="color: #1b45cf; text-decoration: none;">Cửa hàng</a></li>
+    <li class="breadcrumb-item active">Phiếu nhập kho</li>
+</ol>
+
+<div class="row mb-3 align-items-center">
+    <div class="col-md-4">
+        <div class="input-group">
+            <span class="input-group-text bg-white" style="color: #6c757d;"><i class="fas fa-filter"></i></span>
+            <select class="form-select border-start-0" aria-label="Filter Status">
+                <option selected>Tất cả trạng thái...</option>
+                <option value="Completed">Đã nhập kho (Completed)</option>
+                <option value="Shipping">Đang vận chuyển (Shipping)</option>
+                <option value="Pending Payment">Chờ thanh toán (Pending)</option>
+                <option value="Draft">Bản nháp (Draft)</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="col-md-8 d-flex justify-content-end gap-2">
+        <div class="input-group" style="max-width: 250px;">
+            <input type="text" class="form-control" placeholder="Tìm mã phiếu..." aria-label="Search">
+            <button class="btn btn-outline-secondary bg-white text-muted" type="button">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+        
+        <button class="btn btn-secondary text-white" title="Nhập Excel" style="background-color: #6c757d; border: none;">
+            <i class="fas fa-file-import"></i>
+        </button>
+        <button class="btn btn-secondary text-white" title="Xuất Excel" style="background-color: #6c757d; border: none;">
+            <i class="fas fa-file-export"></i>
+        </button>
+        
+        <button class="btn text-white" title="Tạo phiếu nhập mới" style="background-color: #1b45cf; border: none;">
+            <i class="fas fa-plus-circle fa-lg"></i> Nhập hàng
+        </button>
+    </div>
+</div>
+
+<div class="card mb-4 shadow-sm border-0">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0" width="100%" cellspacing="0">
+                <thead style="background-color: #f4f6f9; color: #0a2551;">
+                    <tr>
+                        <th class="ps-3" width="5%"><input type="checkbox" class="form-check-input"></th>
+                        <th width="12%">Mã Phiếu</th>
+                        <th width="20%">Nhà cung cấp</th>
+                        <th width="15%">Người lập phiếu</th>
+                        <th width="15%">Ngày lập</th>
+                        <th class="text-center" width="18%">Trạng thái</th>
+                        <th class="text-center pe-3" width="15%">Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="ps-3"><input type="checkbox" class="form-check-input"></td>
+                        <td><strong>PO01</strong></td>
+                        <td>Apple Việt Nam</td>
+                        <td>Lê Văn C (Thủ kho)</td>
+                        <td>25/03/2026</td>
+                        <td class="text-center">
+                            <span class="badge bg-success rounded-pill px-3 py-2">Completed</span>
+                        </td>
+                        <td class="text-center pe-3">
+                            <button class="btn btn-sm btn-light text-primary" title="Xem chi tiết"><i class="fas fa-eye"></i></button>
+                            <button class="btn btn-sm btn-light text-primary" title="In phiếu"><i class="fas fa-print"></i></button>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="ps-3"><input type="checkbox" class="form-check-input"></td>
+                        <td><strong>PO03</strong></td>
+                        <td>Synnex FPT</td>
+                        <td>Lê Văn C (Thủ kho)</td>
+                        <td>26/03/2026</td>
+                        <td class="text-center">
+                            <span class="badge bg-warning text-dark rounded-pill px-3 py-2">Pending Payment</span>
+                        </td>
+                        <td class="text-center pe-3">
+                            <button class="btn btn-sm btn-light text-primary" title="Xem chi tiết"><i class="fas fa-eye"></i></button>
+                            <button class="btn btn-sm btn-light text-primary" title="In phiếu"><i class="fas fa-print"></i></button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="ps-3"><input type="checkbox" class="form-check-input"></td>
+                        <td><strong>PO04</strong></td>
+                        <td>Apple Việt Nam</td>
+                        <td>Trần Văn A (Quản lý)</td>
+                        <td>26/03/2026</td>
+                        <td class="text-center">
+                            <span class="badge bg-primary rounded-pill px-3 py-2">Shipping</span>
+                        </td>
+                        <td class="text-center pe-3">
+                            <button class="btn btn-sm btn-light text-primary" title="Xem chi tiết"><i class="fas fa-eye"></i></button>
+                            <button class="btn btn-sm btn-light text-primary" title="In phiếu"><i class="fas fa-print"></i></button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="ps-3"><input type="checkbox" class="form-check-input"></td>
+                        <td><strong>PO05</strong></td>
+                        <td>Digiworld</td>
+                        <td>Lê Văn C (Thủ kho)</td>
+                        <td>26/03/2026</td>
+                        <td class="text-center">
+                            <span class="badge bg-secondary rounded-pill px-3 py-2">Draft</span>
+                        </td>
+                        <td class="text-center pe-3">
+                            <button class="btn btn-sm btn-light text-primary" title="Xem chi tiết"><i class="fas fa-eye"></i></button>
+                            <button class="btn btn-sm btn-light text-danger" title="Xóa nháp"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="card-footer bg-white py-3">
+        <ul class="pagination justify-content-end mb-0">
+            <li class="page-item disabled"><a class="page-link" href="#">Trước</a></li>
+            <li class="page-item active"><a class="page-link" href="#" style="background-color: #1b45cf; border-color: #1b45cf;">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">Sau</a></li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,130 @@
+﻿@{
+    ViewData["Title"] = "Quản lý Khách hàng";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<h2 class="mt-4" style="color: #0a2551; font-weight: 600;">Danh sách Khách hàng</h2>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item"><a href="#" style="color: #1b45cf; text-decoration: none;">Nhân sự & Đối tác</a></li>
+    <li class="breadcrumb-item active">Khách hàng</li>
+</ol>
+
+<div class="row mb-3 align-items-center">
+    <div class="col-md-4">
+        <div class="input-group">
+            <span class="input-group-text bg-white" style="color: #6c757d;"><i class="fas fa-map-marker-alt"></i></span>
+            <select class="form-select border-start-0" aria-label="Filter Area">
+                <option selected>Tất cả khu vực...</option>
+                <option value="HN">Hà Nội</option>
+                <option value="HCM">TP. Hồ Chí Minh</option>
+                <option value="Other">Tỉnh/Thành khác</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="col-md-8 d-flex justify-content-end gap-2">
+        <div class="input-group" style="max-width: 250px;">
+            <input type="text" class="form-control" placeholder="Tìm tên, SĐT, Email..." aria-label="Search">
+            <button class="btn btn-outline-secondary bg-white text-muted" type="button">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+        
+        <button class="btn btn-secondary text-white" title="Gửi Email hàng loạt" style="background-color: #6c757d; border: none;">
+            <i class="fas fa-envelope"></i> Gửi Mail
+        </button>
+        <button class="btn btn-secondary text-white" title="Xuất danh sách Excel" style="background-color: #6c757d; border: none;">
+            <i class="fas fa-file-export"></i> Xuất file
+        </button>
+        
+        <button class="btn text-white" title="Thêm khách hàng" style="background-color: #1b45cf; border: none;">
+            <i class="fas fa-plus-circle fa-lg me-1"></i> Thêm mới
+        </button>
+    </div>
+</div>
+
+<div class="card mb-4 shadow-sm border-0">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0" width="100%" cellspacing="0">
+                <thead style="background-color: #f4f6f9; color: #0a2551;">
+                    <tr>
+                        <th class="ps-3" width="5%"><input type="checkbox" class="form-check-input"></th>
+                        <th width="10%">Mã KH</th>
+                        <th width="20%">Khách hàng</th>
+                        <th width="15%">Số điện thoại</th>
+                        <th width="20%">Email</th>
+                        <th width="15%">Địa chỉ</th>
+                        <th class="text-center pe-3" width="15%">Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="ps-3"><input type="checkbox" class="form-check-input"></td>
+                        <td><strong>CUS01</strong></td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <div class="bg-primary text-white rounded-circle d-flex justify-content-center align-items-center me-2" style="width: 35px; height: 35px; font-weight: bold;">V</div>
+                                Vũ Đại Dương
+                            </div>
+                        </td>
+                        <td>0988111222</td>
+                        <td>duongvu@gmail.com</td>
+                        <td>Đống Đa, Hà Nội</td>
+                        <td class="text-center pe-3">
+                            <button class="btn btn-sm btn-light text-success" title="Lịch sử mua hàng"><i class="fas fa-shopping-bag"></i></button>
+                            <button class="btn btn-sm btn-light text-primary" title="Sửa"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-sm btn-light text-danger" title="Xóa/Khóa"><i class="fas fa-ban"></i></button>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="ps-3"><input type="checkbox" class="form-check-input"></td>
+                        <td><strong>CUS02</strong></td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <div class="bg-info text-white rounded-circle d-flex justify-content-center align-items-center me-2" style="width: 35px; height: 35px; font-weight: bold;">Đ</div>
+                                Đặng Mai Linh
+                            </div>
+                        </td>
+                        <td>0977222333</td>
+                        <td>linhdang@gmail.com</td>
+                        <td>Hai Bà Trưng, HN</td>
+                        <td class="text-center pe-3">
+                            <button class="btn btn-sm btn-light text-success" title="Lịch sử mua hàng"><i class="fas fa-shopping-bag"></i></button>
+                            <button class="btn btn-sm btn-light text-primary" title="Sửa"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-sm btn-light text-danger" title="Xóa/Khóa"><i class="fas fa-ban"></i></button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="ps-3"><input type="checkbox" class="form-check-input"></td>
+                        <td><strong>CUS03</strong></td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <div class="bg-secondary text-white rounded-circle d-flex justify-content-center align-items-center me-2" style="width: 35px; height: 35px; font-weight: bold;">L</div>
+                                Lý Quang Huy
+                            </div>
+                        </td>
+                        <td>0966333444</td>
+                        <td>huyly@gmail.com</td>
+                        <td>Hoàn Kiếm, Hà Nội</td>
+                        <td class="text-center pe-3">
+                            <button class="btn btn-sm btn-light text-success" title="Lịch sử mua hàng"><i class="fas fa-shopping-bag"></i></button>
+                            <button class="btn btn-sm btn-light text-primary" title="Sửa"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-sm btn-light text-danger" title="Xóa/Khóa"><i class="fas fa-ban"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="card-footer bg-white py-3">
+        <ul class="pagination justify-content-end mb-0">
+            <li class="page-item disabled"><a class="page-link" href="#">Trước</a></li>
+            <li class="page-item active"><a class="page-link" href="#" style="background-color: #1b45cf; border-color: #1b45cf;">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">Sau</a></li>
+        </ul>
+    </div>
+</div>
