@@ -17,8 +17,19 @@
                 <li><a class="dropdown-item" href="#!">Hồ sơ</a></li>
                 <li><a class="dropdown-item" href="#!">Cài đặt</a></li>
                 <li><hr class="dropdown-divider" /></li>
-                <li><a class="dropdown-item text-danger" href="/Login">Đăng xuất</a></li>
+                <li><a class="dropdown-item text-danger" href="#" onclick="handleLogout(event)">Đăng xuất</a></li>
             </ul>
         </li>
     </ul>
 </nav>
+<script>
+    function handleLogout(event) {
+        event.preventDefault();
+        if (confirm("Bạn có chắc chắn muốn đăng xuất khỏi hệ thống?")) {
+            localStorage.removeItem('AccountID');
+            localStorage.removeItem('Role');
+            window.location.replace('/Home/Index');
+        }
+    }
+</script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

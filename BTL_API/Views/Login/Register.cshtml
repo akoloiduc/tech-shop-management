@@ -21,29 +21,29 @@
             </div>
             
             <div class="card-body p-4">
-                <form asp-controller="Login" asp-action="Register" method="POST">
-                    
+                <form id="register" onsubmit="handleRegister(event)">
+                    <div id="errorMessage" class="alert alert-danger p-2 d-none" role="alert"></div>
                     <div class="mb-4 mt-2">
-                        <input type="text" name="username" class="form-control rounded-0 border-0 py-2" placeholder="Tên đăng nhập" required>
+                        <input id="username" type="text" class="form-control rounded-0 border-0 py-2" placeholder="Tên đăng nhập" required>
                     </div>
                     <div class="mb-4 mt-2">
-                        <input type="text" name="fullname" class="form-control rounded-0 border-0 py-2" placeholder="Họ và tên" required>
+                        <input id="fullname" type="text" class="form-control rounded-0 border-0 py-2" placeholder="Họ và tên" required>
                     </div>
                     <div class="mb-4 mt-2">
-                        <input type="text" name="phone" class="form-control rounded-0 border-0 py-2" placeholder="Số điện thoại" required>
+                        <input id="phone" type="text" class="form-control rounded-0 border-0 py-2" placeholder="Số điện thoại" required>
                     </div>
                     <div class="mb-4 mt-2">
-                        <input type="text" name="email" class="form-control rounded-0 border-0 py-2" placeholder="Email" required>
+                        <input id="email" type="text" class="form-control rounded-0 border-0 py-2" placeholder="Email" required>
                     </div>
                     <div class="mb-4 mt-2">
-                        <input type="text" name="address" class="form-control rounded-0 border-0 py-2" placeholder="Địa chỉ" required>
+                        <input id="address" type="text" class="form-control rounded-0 border-0 py-2" placeholder="Địa chỉ" required>
                     </div>
                     <div class="mb-4">
-                        <input type="password" name="password" class="form-control rounded-0 border-0 py-2" placeholder="Mật khẩu" required>
+                        <input id ="password" type="password" class="form-control rounded-0 border-0 py-2" placeholder="Mật khẩu" required>
                     </div>
 
                     <div class="mb-4">
-                        <input type="password" name="confirmPassword" class="form-control rounded-0 border-0 py-2" placeholder="Xác nhận mật khẩu" required>
+                        <input id="confirmPassword" type="password" class="form-control rounded-0 border-0 py-2" placeholder="Xác nhận mật khẩu" required>
                     </div>
           
                     <div class="d-grid mb-3">
@@ -63,3 +63,60 @@
 
 </body>
 </html>
+<script>
+    function handleRegister(event) {
+        event.preventDefault();
+
+        const user = document.getElementById('username').value;
+        const name = document.getElementById('fullname').value;
+        const phone = document.getElementById('phone').value;
+        const email = document.getElementById('email').value;
+        const address = document.getElementById('address').value;
+
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        const errorMess = document.getElementById('errorMessage');
+        errorMess.classList.add('d-none');
+
+        if (password !== confirmPassword) {
+            errorMess.innerText = "Mật khẩu xác nhận không khớp!";
+            errorMess.classList.remove('d-none');
+            return;
+        }
+
+        const details = {
+            Username: user,
+            FullName: name,
+            Phone: phone,
+            Email: email,
+            Address: address,
+            Password: password
+        };
+
+        fetch('http://127.0.0.1:5000/auth/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(details)
+        })
+        .then(response => {
+            return response.json().then(data => ({ status: response.status, body: data }));
+        })
+        .then(result => {
+            if (result.status === 200) {
+                alert('Đăng ký tài khoản thành công! Vui lòng đăng nhập.');
+                window.location.replace('/Login/Index');
+            } else {
+                errorMess.innerText = result.body.mess || "Có lỗi xảy ra khi đăng ký.";
+                errorMess.classList.remove('d-none');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            errorMess.innerText = "Không thể kết nối đến máy chủ. Vui lòng thử lại sau.";
+            errorMess.classList.remove('d-none');
+        });
+    }
+</script>

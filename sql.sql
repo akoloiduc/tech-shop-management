@@ -1,5 +1,26 @@
 ﻿USE DuLieu;
 
+-- =========================================================================
+-- 0. XÓA BẢNG CŨ (Phải xóa bảng con trước, bảng cha sau để không lỗi khóa ngoại)
+-- =========================================================================
+
+DROP TABLE IF EXISTS BillDetail;
+DROP TABLE IF EXISTS Bill;
+DROP TABLE IF EXISTS PurchaseOrderDetail;
+DROP TABLE IF EXISTS PurchaseOrder;
+DROP TABLE IF EXISTS Account;
+DROP TABLE IF EXISTS ProductVariant;
+DROP TABLE IF EXISTS Product;
+DROP TABLE IF EXISTS Category;
+DROP TABLE IF EXISTS Supplier;
+DROP TABLE IF EXISTS Employee;
+DROP TABLE IF EXISTS Customer;
+
+GO
+-- =========================================================================
+-- 1. TẠO BẢNG (TABLES)
+-- =========================================================================
+
 -- Bảng Category (Danh mục)
 CREATE TABLE Category (
     CategoryID VARCHAR(50) PRIMARY KEY,
@@ -44,13 +65,12 @@ CREATE TABLE Account (
     CustomerID VARCHAR(50) FOREIGN KEY REFERENCES Customer(CustomerID) NULL
 );
 
--- Bảng Product (Sản phẩm)
+-- Bảng Product (Sản phẩm) - ĐÃ XÓA DESCRIPTION
 CREATE TABLE Product (
     ProductID VARCHAR(50) PRIMARY KEY,
     ProductName NVARCHAR(150) NOT NULL,
     Brand NVARCHAR(50),
     Image VARCHAR(255),
-    Description NVARCHAR(MAX),
     Information NVARCHAR(MAX), 
     Status VARCHAR(50),
     CategoryID VARCHAR(50) FOREIGN KEY REFERENCES Category(CategoryID)
@@ -61,9 +81,9 @@ CREATE TABLE ProductVariant (
     ProductVariantID VARCHAR(50) PRIMARY KEY,
     ProductID VARCHAR(50) FOREIGN KEY REFERENCES Product(ProductID),
     Color NVARCHAR(50),
-    Capacity VARCHAR(50),
     SellingPrice DECIMAL(18,2) NOT NULL,
-    StockQuantity INT DEFAULT 0
+    StockQuantity INT DEFAULT 0,
+    Description NVARCHAR(MAX) 
 );
 
 -- Bảng PurchaseOrder (Phiếu nhập hàng)
@@ -105,7 +125,7 @@ CREATE TABLE BillDetail (
 );
 
 -- =========================================================================
--- 3. INSERT DỮ LIỆU MẪU (5 DÒNG/BẢNG)
+-- 2. INSERT DỮ LIỆU MẪU (5 DÒNG/BẢNG)
 -- =========================================================================
 
 -- Data Category
@@ -142,28 +162,28 @@ INSERT INTO Customer (CustomerID, FullName, Phone, Email, Address) VALUES
 
 -- Data Account (Mật khẩu '123' cho tất cả để test)
 INSERT INTO Account (AccountID, Username, Password, Role, IsActive, EmployeeID, CustomerID) VALUES 
-('ACC01', 'admin', '123', 'Admin', 1, 'EMP01', NULL),          -- Tài khoản Quản lý
-('ACC02', 'nhanvien_b', '123', 'Sales', 1, 'EMP02', NULL),       -- Tài khoản Bán hàng
-('ACC03', 'khokho_c', '123', 'Inventory', 1, 'EMP03', NULL),     -- Tài khoản Thủ kho
-('ACC04', 'khachhang_duong', '123', 'Customer', 1, NULL, 'CUS01'), -- Tài khoản Khách hàng Dương
-('ACC05', 'khachhang_linh', '123', 'Customer', 1, NULL, 'CUS02');  -- Tài khoản Khách hàng Linh
+('ACC01', 'admin', '123', 'Admin', 1, 'EMP01', NULL),          
+('ACC02', 'nhanvien_b', '123', 'Sales', 1, 'EMP02', NULL),       
+('ACC03', 'khokho_c', '123', 'Inventory', 1, 'EMP03', NULL),     
+('ACC04', 'khachhang_duong', '123', 'Customer', 1, NULL, 'CUS01'), 
+('ACC05', 'khachhang_linh', '123', 'Customer', 1, NULL, 'CUS02');  
 
--- Data Product
-INSERT INTO Product (ProductID, ProductName, Brand, Image, Description, Information, Status, CategoryID) VALUES 
-('PROD01', N'iPhone 15 Pro Max', 'Apple', 'ip15pm.jpg', N'Siêu phẩm Apple 2023', '{"CPU":"A17 Pro", "Screen":"6.7 inch OLED", "Camera":"48MP"}', 'Active', 'CAT01'),
-('PROD02', N'Samsung Galaxy S24 Ultra', 'Samsung', 's24u.jpg', N'Đỉnh cao AI', '{"CPU":"Snapdragon 8 Gen 3", "Screen":"6.8 inch Dynamic AMOLED", "Camera":"200MP"}', 'Active', 'CAT01'),
-('PROD03', N'MacBook Pro 14 inch M3', 'Apple', 'macm3.jpg', N'Laptop đồ họa', '{"CPU":"Apple M3", "RAM":"16GB"}', 'Active', 'CAT02'),
-('PROD04', N'iPad Pro 11 inch M4', 'Apple', 'ipadm4.jpg', N'Tablet mỏng nhẹ', '{"CPU":"Apple M4", "Screen":"11 inch OLED"}', 'Active', 'CAT03'),
-('PROD05', N'AirPods Pro 2', 'Apple', 'airpods.jpg', N'Tai nghe chống ồn', '{"Type":"In-ear", "Battery":"6 hours"}', 'Active', 'CAT04');
+-- Data Product - ĐÃ XÓA DESCRIPTION
+INSERT INTO Product (ProductID, ProductName, Brand, Image, Information, Status, CategoryID) VALUES 
+('PROD01', N'iPhone 15 Pro Max', 'Apple', 'ip15pm.jpg', '{"CPU":"A17 Pro", "Screen":"6.7 inch OLED", "Camera":"48MP"}', 'Active', 'CAT01'),
+('PROD02', N'Samsung Galaxy S24 Ultra', 'Samsung', 's24u.jpg', '{"CPU":"Snapdragon 8 Gen 3", "Screen":"6.8 inch Dynamic AMOLED", "Camera":"200MP"}', 'Active', 'CAT01'),
+('PROD03', N'MacBook Pro 14 inch M3', 'Apple', 'macm3.jpg', '{"CPU":"Apple M3", "RAM":"16GB"}', 'Active', 'CAT02'),
+('PROD04', N'iPad Pro 11 inch M4', 'Apple', 'ipadm4.jpg', '{"CPU":"Apple M4", "Screen":"11 inch OLED"}', 'Active', 'CAT03'),
+('PROD05', N'AirPods Pro 2', 'Apple', 'airpods.jpg', '{"Type":"In-ear", "Battery":"6 hours"}', 'Active', 'CAT04');
 
--- Data ProductVariant
-INSERT INTO ProductVariant (ProductVariantID, ProductID, Color, Capacity, SellingPrice, StockQuantity) VALUES 
-('VAR01', 'PROD01', N'Titan Tự Nhiên', '256GB', 29500000, 15),
-('VAR02', 'PROD01', N'Titan Đen', '512GB', 35000000, 5),
-('VAR03', 'PROD02', N'Xám Titan', '256GB', 26000000, 20),
-('VAR04', 'PROD03', N'Silver', '512GB', 40000000, 8),
-('VAR05', 'PROD05', N'Trắng', 'N/A', 5500000, 50);
-
+-- Data ProductVariant - ĐÃ THÊM DESCRIPTION TỪ BẢNG PRODUCT SANG
+-- Data ProductVariant - ĐÃ XÓA CAPACITY
+INSERT INTO ProductVariant (ProductVariantID, ProductID, Color, SellingPrice, StockQuantity, Description) VALUES 
+('VAR01', 'PROD01', N'Titan Tự Nhiên', 29500000, 15, N'Siêu phẩm Apple 2023'),
+('VAR02', 'PROD01', N'Titan Đen', 35000000, 5, N'Siêu phẩm Apple 2023'),
+('VAR03', 'PROD02', N'Xám Titan', 26000000, 20, N'Đỉnh cao AI'),
+('VAR04', 'PROD03', N'Silver', 40000000, 8, N'Laptop đồ họa'),
+('VAR05', 'PROD05', N'Trắng', 5500000, 50, N'Tai nghe chống ồn');
 -- Data PurchaseOrder (Phiếu nhập)
 INSERT INTO PurchaseOrder (PurchaseOrderID, SupplierID, EmployeeID, Status) VALUES 
 ('PO01', 'SUP01', 'EMP03', 'Completed'),

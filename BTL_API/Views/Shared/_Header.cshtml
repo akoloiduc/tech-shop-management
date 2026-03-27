@@ -72,10 +72,39 @@
             </div>
 
             <div class="d-flex align-items-center gap-2">
-                <button class="btn header-btn p-2 px-3"><i class="bi bi-cart fs-5"></i></button>
-                <button class="btn header-btn p-2 px-3"><i class="bi bi-box-arrow-in-right fs-5"></i></button>
-            </div>
+                <button id="btncart" class="btn header-btn p-2 px-3 d-none"><i class="bi bi-cart fs-5"></i></button>
 
+                <a href="/Login/Index" id="btnLogin" class="btn header-btn p-2 px-3 d-none" title="Đăng nhập">
+                    <i class="bi bi-person fs-5"></i>
+                </a>
+
+                <button id="btnLogout" class="btn header-btn p-2 px-3 d-none" onclick="handleLogout(event)" title="Đăng xuất">
+                    <i class="bi bi-box-arrow-right fs-5"></i>
+                </button>
+            </div>
         </div>
     </div>
 </header>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const currentAccount = localStorage.getItem('AccountID');
+        const btnLogin = document.getElementById('btnLogin');
+        const btnLogout = document.getElementById('btnLogout');
+
+        if (currentAccount) {
+            btnLogout.classList.remove('d-none');
+            btncart.classList.remove('d-none');
+        } else {
+            btnLogin.classList.remove('d-none');
+        }
+    });
+
+    function handleLogout(event) {
+        event.preventDefault();
+        if (confirm("Bạn có chắc chắn muốn đăng xuất khỏi hệ thống?")) {
+            localStorage.removeItem('AccountID');
+            localStorage.removeItem('Role');
+            window.location.replace('/Home/Index');
+        }
+    }
+</script>

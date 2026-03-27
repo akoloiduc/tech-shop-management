@@ -11,8 +11,22 @@
     <title>@ViewData["Title"]</title>
 
     <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script>
+        const currentRole = localStorage.getItem('Role');
+
+        if (currentRole) {
+           
+            if (currentRole === 'Customer') {
+                window.location.replace('/Home/Index');
+            } else {
+                window.location.replace('/Admin/Product');
+            }
+        }
+    </script>
 </head>
 <body style="background-color: #f4f6f9;">
+    
+    
     <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
         <div class="card shadow-sm" style="width: 350px; background-color: #d9d9d9; border: none; border-radius: 0;">
             <div class="card-header border-0 d-flex justify-content-center align-items-center" style="background-color: #1b45cf; height: 60px; border-radius: 0;">
@@ -47,7 +61,6 @@
         function handleLogin(event) {
             event.preventDefault();
 
-            // Đã sửa .value() thành .value
             const user = document.getElementById('username').value;
             const pwd = document.getElementById('password').value;
             const error_mess = document.getElementById('errorMessage');
@@ -60,13 +73,13 @@
             };
 
             fetch('http://127.0.0.1:5000/auth/login', {
-                method: 'POST', // Đã sửa methods thành method
+                method: 'POST', 
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(detail)
             })
-            .then(response => { // Sửa lỗi đánh máy respone thành response cho chuẩn
+            .then(response => { 
                 return response.json().then(data => ({ status: response.status, body: data }));
             })
             .then(result => {
@@ -76,14 +89,14 @@
                     alert('Đăng nhập thành công!');
 
                     if (result.body.Role === 'Customer') {
-                        // Đã thêm dấu / ở đầu
+                       
                         window.location.href = '/Home/Index';
                     } else {
-                        // Đã thêm dấu / ở đầu
+                       
                         window.location.href = '/Admin/Product';
                     }
                 } else {
-                    // Đã đồng bộ tên biến thành error_mess
+                   
                     error_mess.innerText = result.body.mess || "Tên đăng nhập hoặc mật khẩu không đúng.";
                     error_mess.classList.remove('d-none');
                 }
