@@ -4,8 +4,8 @@ from flask_cors import CORS
 import uuid
 con_str = (
     "Driver={SQL Server};"
-    "Server=localhost\\SQLEXPRESS;"
-    "Database=DuLieu;"
+    "Server=.\\SQLEXPRESS;"
+    "Database=ShopManagement;"
     "Trusted_Connection=yes;"
 )
 conn = pyodbc.connect(con_str)
