@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
-    
+
     <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body style="background-color: #f4f6f9;">
@@ -18,25 +18,17 @@
             <div class="card-header border-0 d-flex justify-content-center align-items-center" style="background-color: #1b45cf; height: 60px; border-radius: 0;">
                 <h4 class="text-white rounded-0" style="font-weight: 600;">Cell Tech</h4>
             </div>
-            
+
             <div class="card-body p-4">
-                <form asp-controller="Login" asp-action="Index" method="POST">
-                    
-                    @if (ViewBag.Error != null)
-                    {
-                        <div class="alert alert-danger p-2" role="alert">
-                            @ViewBag.Error
-                        </div>
-                    }
+                <form id="loginForm" onsubmit="handleLogin(event)">
+                    <div id="errorMessage" class="alert alert-danger p-2 d-none" role="alert"></div>
 
                     <div class="mb-4 mt-2">
-                        <input type="text" name="username" class="form-control rounded-0 border-0 py-2" placeholder="Tên đăng nhập" required>
+                        <input id="username" type="text" class="form-control rounded-0 border-0 py-2" placeholder="Tên đăng nhập" required />
                     </div>
-                    
                     <div class="mb-4">
-                        <input type="password" name="password" class="form-control rounded-0 border-0 py-2" placeholder="Mật khẩu" required>
+                        <input id="password" type="password" class="form-control rounded-0 border-0 py-2" placeholder="Mật khẩu" required />
                     </div>
-                    
                     <div class="d-grid mb-2">
                         <button type="submit" class="btn text-white rounded-0 py-2" style="background-color: #1b45cf; font-weight: 500;">
                             Đăng nhập
@@ -51,5 +43,57 @@
         </div>
     </div>
 
+    <script>
+        function handleLogin(event) {
+            event.preventDefault();
+
+            // Đã sửa .value() thành .value
+            const user = document.getElementById('username').value;
+            const pwd = document.getElementById('password').value;
+            const error_mess = document.getElementById('errorMessage');
+
+            error_mess.classList.add('d-none');
+
+            const detail = {
+                Username: user,
+                Password: pwd
+            };
+
+            fetch('http://127.0.0.1:5000/auth/login', {
+                method: 'POST', // Đã sửa methods thành method
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(detail)
+            })
+            .then(response => { // Sửa lỗi đánh máy respone thành response cho chuẩn
+                return response.json().then(data => ({ status: response.status, body: data }));
+            })
+            .then(result => {
+                if (result.status === 200) {
+                    localStorage.setItem('AccountID', result.body.AccountID);
+                    localStorage.setItem('Role', result.body.Role);
+                    alert('Đăng nhập thành công!');
+
+                    if (result.body.Role === 'Customer') {
+                        // Đã thêm dấu / ở đầu
+                        window.location.href = '/Home/Index';
+                    } else {
+                        // Đã thêm dấu / ở đầu
+                        window.location.href = '/Admin/Product';
+                    }
+                } else {
+                    // Đã đồng bộ tên biến thành error_mess
+                    error_mess.innerText = result.body.mess || "Tên đăng nhập hoặc mật khẩu không đúng.";
+                    error_mess.classList.remove('d-none');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                error_mess.innerText = "Không thể kết nối đến máy chủ. Vui lòng thử lại sau.";
+                error_mess.classList.remove('d-none');
+            });
+        }
+    </script>
 </body>
 </html>
