@@ -84,3 +84,15 @@ def delete_customer(id):
     except Exception as e:
         conn.rollback()
         return flask.jsonify({"error": str(e)}), 500
+
+@customer_bp.route('/search', methods=['POST'])
+def search_employee():
+    try:
+        keyword = flask.request.args.get('keyword', )
+        cursor = conn.cursor()
+        sql = "select * from Customer where FullName like ?"
+        search_term = f"%{keyword}%"
+        cursor.execute(sql, (search_term,))
+        return flask.jsonify(get_json_results(cursor)), 200
+    except Exception as e:
+        return flask.jsonify({'error': str(e)}), 400
