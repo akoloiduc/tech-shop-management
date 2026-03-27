@@ -36,7 +36,6 @@ def add_variant():
     try:
         ProductVariantID = "VAR_" + str(uuid.uuid4())[:6]
         ProductID = "PRO_" + str(uuid.uuid4())[:6]
-        Capacity = flask.request.json.get("Capacity")
         Color = flask.request.json.get("Color")
         StockQuantity = flask.request.json.get("StockQuantity")
         SellingPrice = flask.request.json.get("SellingPrice")
@@ -45,11 +44,11 @@ def add_variant():
         if cursor.fetchone():
             return flask.jsonify({"message": "ProductVariantID already exist!"}), 400
         query = """
-                INSERT INTO ProductVariant(ProductVariantID, ProductID, Color, Capacity,  
+                INSERT INTO ProductVariant(ProductVariantID, ProductID, Color,  
                 SellingPrice, StockQuantity, Description) 
                 VALUES(?, ?, ?, ?, ?, ?, ?)
                 """
-        cursor.execute(query, (ProductVariantID, ProductID, Color, Capacity, SellingPrice, StockQuantity, Description))
+        cursor.execute(query, (ProductVariantID, ProductID, Color, SellingPrice, StockQuantity, Description))
         conn.commit()
         
         return flask.jsonify({"message": "Success!"}), 201
@@ -61,17 +60,16 @@ def add_variant():
 def update_variant(ID):
     cursor = conn.cursor()
     try:
-        Capacity = flask.request.json.get("Capacity")
         Color = flask.request.json.get("Color")
         StockQuantity = flask.request.json.get("StockQuantity")
         SellingPrice = flask.request.json.get("SellingPrice")
         Description = flask.request.json.get("Description")
         query = """
-                UPDATE Productvariant SET Color = ?, Capacity = ?,
+                UPDATE Productvariant SET Color = ?,
                 SellingPrice = ?, StockQuantity = ?, Description = ?
                 WHERE ProductVariantID = ?
                 """
-        cursor.execute(query, (Color, Capacity, SellingPrice, StockQuantity, Description, ID))
+        cursor.execute(query, (Color, SellingPrice, StockQuantity, Description, ID))
         conn.commit()
         
         return flask.jsonify({"message": "Success!"}), 200
@@ -90,14 +88,3 @@ def delete_variant(ID):
         return flask.jsonify({"message": "Success!"}), 200
     except Exception as e:
         return flask.jsonify({"error": str(e)}), 500
-@variant_bp.route('/search', methods=['POST'])
-def search_products():
-    try:
-        keyword = flask.request.args.get('keyword', )
-        cursor = conn.cursor()
-        sql = "select * from ProductVariant where Color like ? or SellingPrice like ? or StockQuantity like ? or Description like ?"
-        search_term = f"%{keyword}%"
-        cursor.execute(sql, (search_term, search_term, search_term, search_term,))
-        return flask.jsonify(get_json_results(cursor)), 200
-    except Exception as e:
-        return flask.jsonify({'error': str(e)}), 400
