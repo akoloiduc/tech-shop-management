@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from .db import get_db_connection, rows_to_dict_list
+from db import get_db_connection, rows_to_dict_list
 
 bp = Blueprint('variant', __name__)
 

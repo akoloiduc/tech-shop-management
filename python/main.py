@@ -3,19 +3,20 @@ import flask
 from flask_cors import CORS
 import uuid
 
-from . import category
-from . import product
-from . import supplier
-from . import purchase_order
-from . import purchase_order_detail
-from . import product_variant
+import category
+import product
+import supplier
+import purchase_order
+import purchase_order_detail
+import product_variant
 
 con_str = (
-    "Driver={SQL Server};"
-    "Server=localhost\\SQLEXPRESS;"
-    "Database=DuLieu;"
-    "Trusted_Connection=yes;"
-)
+        "DRIVER={SQL Server};"
+        "SERVER=localhost,1433;"
+        "DATABASE=DuLieu;"
+        "UID=sa;"
+        "PWD=dung0;"
+    )
 conn = pyodbc.connect(con_str)
 app = flask.Flask(__name__)
 CORS(app)
