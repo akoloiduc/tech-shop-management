@@ -1,0 +1,13 @@
+# Các thư mục chứa file build (quan trọng nhất)
+bin/
+obj/
+
+# Các file tạm của Visual Studio
+.vs/
+*.vsidx
+*.suo
+*.user
+
+# Các file cache và log
+*.cache
+*.log
