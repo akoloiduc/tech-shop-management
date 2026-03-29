@@ -227,4 +227,17 @@ INSERT INTO Employee (EmployeeID, FullName, Phone, Email, Role) VALUES
 ('EMP13', N'Đỗ Thùy Chi', '0929345678', 'chi.do@shop.com', N'Kế toán'),
 ('EMP14', N'Ngô Tiến Dũng', '0939456789', 'dung.ngo@shop.com', N'Bảo vệ'),
 ('EMP15', N'Trương Gia Bình', '0949567890', 'binh.truong@shop.com', N'Quản lý');
-select * from Employee;
+select * from Customer;
+-- Thêm 10 khách hàng mới cho bảng Customer
+-- Bản sửa lỗi: Thêm 10 khách hàng với số điện thoại không trùng lặp
+INSERT INTO Customer (CustomerID, FullName, Phone, Email, Address) VALUES 
+('CUS06', N'Nguyễn Hoàng Nam', '0911222331', 'nam.hoang@gmail.com', N'Thanh Xuân, Hà Nội'),
+('CUS07', N'Trần Thu Hà', '0922333442', 'ha.tran88@gmail.com', N'Ba Đình, Hà Nội'),
+('CUS08', N'Lê Minh Triết', '0933444553', 'triet.le@outlook.com', N'Long Biên, Hà Nội'),
+('CUS09', N'Phạm Thùy Dương', '0944555664', 'duong.pham@yahoo.com', N'Nam Từ Liêm, Hà Nội'),
+('CUS10', N'Hoàng Quốc Trung', '0955666775', 'trung.hq@gmail.com', N'Bắc Từ Liêm, Hà Nội'),
+('CUS11', N'Vũ Phương Anh', '0966777886', 'anhvp.student@utc.edu.vn', N'Cầu Giấy, Hà Nội'),
+('CUS12', N'Đỗ Kim Chi', '0977888997', 'chi.do@gmail.com', N'Hoàng Mai, Hà Nội'),
+('CUS13', N'Trương Công Vinh', '0988999008', 'vinh.truong@gmail.com', N'Hà Đông, Hà Nội'),
+('CUS14', N'Phan Thanh Bình', '0912999119', 'binh.pt@gmail.com', N'Tây Hồ, Hà Nội'),
+('CUS15', N'Ngô Bảo Châu', '0913888220', 'chau.ngo@gmail.com', N'Hai Bà Trưng, Hà Nội');

@@ -1,7 +1,7 @@
 ﻿
 
 // ==========================================
-// 1. CÁC BIẾN TOÀN CỤC CHO PHÂN TRANG (QUAN TRỌNG)
+// 1. CÁC BIẾN TOÀN CỤC CHO PHÂN TRANG 
 // ==========================================
 let currentData = []; // Mảng nhớ tạm dữ liệu
 let currentPage = 1;  // Trang hiện hành
@@ -189,7 +189,7 @@ function saveNewEmployee() {
                 var modal = bootstrap.Modal.getInstance(myModalEl);
                 modal.hide();
 
-                // QUAN TRỌNG: Gọi lại hàm load bảng để nó hiển thị ngay nhân viên mới
+             
                 executeSearch();
             }
             // Nếu Python báo lỗi (Trùng Username, SĐT... - Status 400 hoặc 500)
