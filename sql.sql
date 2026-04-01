@@ -78,8 +78,7 @@ CREATE TABLE Product (
     Image VARCHAR(255),
     Information NVARCHAR(MAX), 
     Status VARCHAR(50),
-    CategoryID VARCHAR(50) FOREIGN KEY REFERENCES Category(CategoryID),
-    IsDeleted BIT DEFAULT 0
+    CategoryID VARCHAR(50) FOREIGN KEY REFERENCES Category(CategoryID)
 );
 
 -- Bảng ProductVariant (Biến thể sản phẩm)
@@ -89,7 +88,7 @@ CREATE TABLE ProductVariant (
     Color NVARCHAR(50),
     SellingPrice DECIMAL(18,2) NOT NULL,
     StockQuantity INT DEFAULT 0,
-    Description NVARCHAR(MAX) ,
+    Description NVARCHAR(MAX),
     IsDeleted BIT DEFAULT 0
 );
 

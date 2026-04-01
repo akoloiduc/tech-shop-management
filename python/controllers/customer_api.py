@@ -6,7 +6,7 @@ customer_bp = flask.Blueprint('customer_bp', __name__)
 @customer_bp.route('/getall', methods=['GET'])
 def get_all_customers():
     cursor = conn.cursor()
-    cursor.execute('SELECT * FROM Customer where  = 0')
+    cursor.execute('SELECT * FROM Customer where  IsDeleted = 0')
     return flask.jsonify(get_json_results(cursor)), 200
 
 @customer_bp.route('/<id>', methods = ['GET'])

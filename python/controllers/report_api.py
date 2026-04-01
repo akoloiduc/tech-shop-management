@@ -7,7 +7,7 @@ report_bp = flask.Blueprint('report_bp', __name__)
 @report_bp.route('/revenue', methods=['GET'])
 def report_revenue():
     cursor = conn.cursor()
-    cursor.execute("SELECT SUM(TotalPrice) FROM Bill WHERE Status = 'Completed'")
+    cursor.execute("SELECT SUM(TotalPrice) FROM Bill WHERE IsDeleted = 0 and Status = 'Completed'")
     rev = cursor.fetchone()[0]
     if rev is None:
         rev = 0
