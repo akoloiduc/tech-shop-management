@@ -45,16 +45,23 @@ def add_purchase_order():
         Status = flask.request.json.get("Status")
         EmployeeID = flask.request.json.get("EmployeeID")
         SupplierID = flask.request.json.get("SupplierID")
+        
         cursor.execute("SELECT PurchaseOrderID FROM PurchaseOrder WHERE PurchaseOrderID = ?", (PurchaseOrderID,))
         if cursor.fetchone():
             return flask.jsonify({"message": "PurchaseOrderID already exist!"}), 400
+        cursor.execute("SELECT SupplierID FROM Supplier WHERE SupplierID = ?", (SupplierID,))
+        if not cursor.fetchone():
+            return flask.jsonify({"message": "Supplier does not exist!"}), 400
+        cursor.execute("SELECT EmployeeID FROM Employee WHERE EmployeeID = ?", (EmployeeID,))
+        if not cursor.fetchone():
+            return flask.jsonify({"message": "Employee does not exist!"}), 400
         query = """
                 INSERT INTO PurchaseOrder(PurchaseOrderID, SupplierID, EmployeeID,  Status) 
                 VALUES(?, ?, ?, ?)
                 """
         cursor.execute(query, (PurchaseOrderID, SupplierID, EmployeeID, Status))
         conn.commit()
-        conn.close()
+        
         return flask.jsonify({"message": "Success!"}), 201
     except Exception as e:
         return flask.jsonify({"error": str(e)}), 500
@@ -65,13 +72,22 @@ def update_purchase_order(ID):
     cursor = conn.cursor()
     try:
         Status = flask.request.json.get("Status")
+        EmployeeID = flask.request.json.get("EmployeeID")
+        SupplierID = flask.request.json.get("SupplierID")
+        cursor.execute("SELECT SupplierID FROM Supplier WHERE SupplierID = ?", (SupplierID,))
+        if not cursor.fetchone():
+            return flask.jsonify({"message": "Supplier does not exist!"}), 400
+        cursor.execute("SELECT EmployeeID FROM Employee WHERE EmployeeID = ?", (EmployeeID,))
+        if not cursor.fetchone():
+            return flask.jsonify({"message": "Employee does not exist!"}), 400
+        
         query = """
-                UPDATE PurchaseOrder SET Status = ?
+                UPDATE PurchaseOrder SET SupplierID = ?, EmployeeID = ?, Status = ?
                 WHERE PurchaseOrderID = ?
                 """
-        cursor.execute(query, (Status, ID))
+        cursor.execute(query, (SupplierID, EmployeeID, Status, ID))
         conn.commit()
-        conn.close()
+        
         return flask.jsonify({"message": "Success!"}), 200
     except Exception as e:
         return flask.jsonify({"error": str(e)}), 500
@@ -81,10 +97,12 @@ def update_purchase_order(ID):
 def delete_purchase_order(ID):
     cursor = conn.cursor()
     try:
+        query = "DELETE FROM PurchaseOrderDetail WHERE PurchaseOrderID = ?"
+        cursor.execute(query, (ID,))
         query = "DELETE FROM PurchaseOrder WHERE PurchaseOrderID = ?"
         cursor.execute(query, (ID,))
         conn.commit()
-        conn.close()
+        
         return flask.jsonify({"message": "Success!"}), 200
     except Exception as e:
         return flask.jsonify({"error": str(e)}), 500
@@ -100,6 +118,7 @@ def confirm_purchase_order(ID):
             return flask.jsonify({"error": "Not found"}), 404
         if status_list[0]['Status'] == 'Pending Payment':
             return flask.jsonify({"error": "This order has been confirmed before"}), 400
+        
         cursor.execute("UPDATE PurchaseOrder SET Status = 'Pending Payment' WHERE PurchaseOrderID = ?", (ID,))
         update_stock_query = """
             UPDATE pv
@@ -110,7 +129,7 @@ def confirm_purchase_order(ID):
             """
         cursor.execute(update_stock_query, (ID,))
         conn.commit()
-        conn.close()
+    
         return flask.jsonify({"message": "Confirmed and stock updated successfully!"}), 200
     except Exception as e:
         if conn:
@@ -119,7 +138,6 @@ def confirm_purchase_order(ID):
     finally:
         if conn:
             conn.close()
-
 
 @purchase_order_bp.route('/<ID>/pay', methods=['POST'])
 def pay_purchase_order(ID):
@@ -134,8 +152,8 @@ def pay_purchase_order(ID):
             return flask.jsonify({"error": "This order has been payed before"}), 400
         cursor.execute("UPDATE PurchaseOrder SET Status = 'Completed' WHERE PurchaseOrderID = ?", (ID,))
         conn.commit()
-        conn.close()
         return flask.jsonify({"message": "Confirmed and stock updated successfully!"}), 200
+    
     except Exception as e:
         if conn:
             conn.rollback()
