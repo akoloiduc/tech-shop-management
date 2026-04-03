@@ -11,9 +11,6 @@ def get_all_variant():
     db_conn = get_connection()
     cursor = db_conn.cursor()
     try:
-        # SỬA LỖI & NÂNG CẤP: Dùng LEFT JOIN để lấy cột Images của Product
-        # Đặt tên alias là ProductImages để dễ phân biệt
-        # Kèm thêm điều kiện pv.IsDeleted = 0 để không lấy biến thể đã xóa mềm
         query = """
             SELECT pv.*, p.Images AS ProductImages 
             FROM ProductVariant pv
@@ -35,10 +32,6 @@ def get_all_variant():
                 v['SellingPrice'] = float(v['SellingPrice'])
             if v.get('StockQuantity') is not None:
                 v['StockQuantity'] = int(v['StockQuantity'])
-
-            # =======================================================
-            # XỬ LÝ ẢNH: Kế thừa ảnh từ Product nếu Variant không có
-            # =======================================================
             v_img = v.get('Image')
             # Kiểm tra nếu Image rỗng, null, hoặc mảng rỗng '[]'
             if not v_img or str(v_img).strip() in ['', '[]']:
