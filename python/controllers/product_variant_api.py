@@ -1,7 +1,7 @@
 import flask
 import uuid
 import json
-from db_config import get_connection, get_json_results
+from db_config import get_connection, get_json_results, generate_new_id
 
 variant_bp = flask.Blueprint('variant_bp', __name__)
 

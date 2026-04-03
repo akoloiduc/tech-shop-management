@@ -1,9 +1,9 @@
 import pyodbc
 
 con_str = (
-    "Driver={ODBC Driver 17 for SQL Server};" # Ưu tiên driver này nếu có, nếu không giữ nguyên {SQL Server}
-    "Server=.\\SQLEXPRESS;"
-    "Database=ShopManagement;"
+    "Driver={SQL Server};" 
+    "Server=localhost\\SQLEXPRESS;"
+    "Database=Dulieu;"
     "Trusted_Connection=yes;"
     "MARS_Connection=Yes;"
 )

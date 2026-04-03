@@ -46,6 +46,9 @@ function executeProdSearch() {
 // ==========================================
 // 3. HÀM VẼ BẢNG & XỬ LÝ NHIỀU ẢNH JSON
 // ==========================================
+// ==========================================
+// 3. HÀM VẼ BẢNG
+// ==========================================
 function renderProdTable() {
     const tableBody = document.getElementById('productTableBody');
     let htmlContent = '';
@@ -61,9 +64,10 @@ function renderProdTable() {
     let paginatedData = currentProdData.slice(startIndex, endIndex);
 
     paginatedData.forEach(prod => {
-        // Đã fix: Gọi đúng prod.Image theo SQL của mày
+        // Gọi hàm dịch ảnh
         let imagesHtml = renderImageJson(prod.Images);
 
+        // Đã xóa cột Thông số (infoHtml) và cột Trạng thái để khớp với 5 cột HTML
         htmlContent += `
             <tr>
                 <td><strong>${prod.ProductID}</strong></td>
@@ -74,12 +78,6 @@ function renderProdTable() {
                 </td>
                 <td class="fw-bold text-dark">${prod.ProductName}</td>
                 <td>${prod.Brand || ''}</td>
-                
-                <td>${infoHtml}</td>
-                
-                <td class="text-center">
-                    <span class="badge bg-success rounded-pill px-3">Active</span>
-                </td>
                 <td class="text-center pe-3">
                     <button class="btn btn-sm btn-primary me-1" title="Quản lý biến thể"
                         onclick="window.location.href='/Admin/VariantProduct/Index?productId=${prod.ProductID}'">

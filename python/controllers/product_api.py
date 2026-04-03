@@ -1,6 +1,8 @@
+import json
+
 import flask
 import uuid
-from db_config import get_connection, get_json_results
+from db_config import get_connection, get_json_results, generate_new_id
 
 product_bp = flask.Blueprint('product_bp', __name__)
 
@@ -103,8 +105,8 @@ def add_product():
                 INSERT INTO Product (ProductID, ProductName, Brand, Images, Information, CategoryID) 
                 VALUES (?, ?, ?, ?, ?, ?)
                 """
-        
-        cursor.execute(query, (ProductID, ProductName, Brand, Image, Information, CategoryID))
+
+        cursor.execute(query, (ProductID, ProductName, Brand, Images, Information, CategoryID))
         db_conn.commit()
         return flask.jsonify({"message": "Success!"}), 201
     except Exception as e:
@@ -142,7 +144,7 @@ def update_product(ID):
                 SET ProductName = ?, Brand = ?, Images = ?, Information = ?, CategoryID = ?
                 WHERE ProductID = ?
                 """
-        cursor.execute(query, (ProductName, Brand, Image, Information, CategoryID, ID))
+        cursor.execute(query, (ProductName, Brand, Images, Information, CategoryID, ID))
         db_conn.commit()
         
         return flask.jsonify({"message": "Update Success!"}), 200
