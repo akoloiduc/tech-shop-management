@@ -1182,3 +1182,6 @@ INSERT INTO ProductVariant (ProductVariantID, ProductID, Color, SellingPrice, St
 INSERT INTO ProductVariant (ProductVariantID, ProductID, Color, SellingPrice, StockQuantity, Description, Image, Status, IsDeleted) VALUES ('VAR652', 'PROD456', N'Trắng', 0.00, 0, N'', N'https://cellphones.com.vn/media/catalog/product/d/h/dhnn_3__4.png', 'New', 0);
 INSERT INTO ProductVariant (ProductVariantID, ProductID, Color, SellingPrice, StockQuantity, Description, Image, Status, IsDeleted) VALUES ('VAR653', 'PROD457', N'Xám', 0.00, 0, N'', N'https://cellphones.com.vn/media/catalog/product/x/r/xreal-hub-ho-tro-sac-va-xuat-hinh-anh_1__1.png', 'New', 0);
 GO
+UPDATE ProductVariant
+SET StockQuantity = 50;
+GO

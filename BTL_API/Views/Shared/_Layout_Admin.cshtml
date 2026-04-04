@@ -29,23 +29,48 @@
         </div>
     </div>
 
- <script>
-   
-    window.addEventListener('DOMContentLoaded', event => {
-       
-        const sidebarToggle = document.body.querySelector('#sidebarToggle');
-        if (sidebarToggle) {
-            // Lắng nghe sự kiện click
-            sidebarToggle.addEventListener('click', event => {
-                event.preventDefault();
-                // Bật/tắt class sb-sidenav-toggled ở thẻ body
-                document.body.classList.toggle('sb-sidenav-toggled');
-            });
-        }
-    });
-</script> 
+    <script>
+        // 1. Script cho Nút thu gọn Sidebar
+        window.addEventListener('DOMContentLoaded', event => {
+            const sidebarToggle = document.body.querySelector('#sidebarToggle');
+            if (sidebarToggle) {
+                sidebarToggle.addEventListener('click', event => {
+                    event.preventDefault();
+                    document.body.classList.toggle('sb-sidenav-toggled');
+                });
+            }
+        });
+
+        // 2. Script Phân quyền (Trạm gác bảo vệ)
+        document.addEventListener("DOMContentLoaded", function () {
+            const userRole = localStorage.getItem('Role');
+            const currentPath = window.location.pathname.toLowerCase();
+
+            // Chặn người lạ hoặc Khách hàng đi lạc vào Admin
+            if (!userRole || userRole === 'Customer') {
+                window.location.replace('/Login');
+                return;
+            }
+
+            // Thiết quân luật với SALES: Chỉ được vào /admin/bill
+            if (userRole === 'Sales') {
+                if (!currentPath.includes('/admin/bill')) {
+                    alert("Truy cập bị từ chối! Nhân viên Sales chỉ được sử dụng tính năng Quản lý Hóa Đơn.");
+                    window.location.replace('/Admin/Bill');
+                }
+            }
+
+            // Thiết quân luật với INVENTORY: Chỉ được vào /admin/purchaseorder
+            else if (userRole === 'Inventory') {
+                if (!currentPath.includes('/admin/purchaseorder')) {
+                    alert("Truy cập bị từ chối! Thủ kho chỉ được sử dụng tính năng Nhập Hàng.");
+                    window.location.replace('/Admin/PurchaseOrder');
+                }
+            }
+        });
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

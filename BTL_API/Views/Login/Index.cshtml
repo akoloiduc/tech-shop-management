@@ -62,15 +62,29 @@
             .then(response => response.json().then(data => ({ status: response.status, body: data })))
             .then(result => {
                 if (result.status === 200) {
+                    // Lưu thông tin phiên đăng nhập
                     localStorage.setItem('AccountID', result.body.AccountID);
                     localStorage.setItem('Role', result.body.Role);
 
-                    if (result.body.Role === 'Customer') {
+                    // --- ĐIỀU HƯỚNG SAU KHI ĐĂNG NHẬP THÀNH CÔNG ---
+                    let userRole = result.body.Role;
+
+                    if (userRole === 'Customer') {
                         const redirect = sessionStorage.getItem('redirectAfterLogin') || '/Home/Index';
                         sessionStorage.removeItem('redirectAfterLogin');
                         window.location.href = redirect;
-                    } else {
+                    }
+                    else if (userRole === 'Admin') {
                         window.location.href = '/Admin/Product';
+                    }
+                    else if (userRole === 'Sales') {
+                        window.location.href = '/Admin/Bill';
+                    }
+                    else if (userRole === 'Inventory') {
+                        window.location.href = '/Admin/PurchaseOrder';
+                    }
+                    else {
+                        window.location.href = '/Home/Index';
                     }
                 } else {
                     errorDiv.innerText = result.body.mess || 'Tên đăng nhập hoặc mật khẩu không đúng.';
