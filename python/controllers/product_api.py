@@ -187,6 +187,11 @@ def get_product_variant(ID):
             return flask.jsonify({"message": "Can't find this product!"}), 404
 
         for v in variants:
+            if v.get('SellingPrice') is not None:
+                v['SellingPrice'] = float(v['SellingPrice'])
+            if v.get('StockQuantity') is not None:
+                v['StockQuantity'] = int(v['StockQuantity'])
+
             info_str = v.get('Information')
             if info_str:
                 try:
