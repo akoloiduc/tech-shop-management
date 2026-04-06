@@ -25,7 +25,7 @@ function executeBillSearch() {
                     (bill.BillID && bill.BillID.toLowerCase().includes(kw)) ||
                     (bill.CustomerID && bill.CustomerID.toLowerCase().includes(kw)) ||
                     (bill.CustomerName && bill.CustomerName.toLowerCase().includes(kw)) || 
-                    (bill.EmployeeName && bill.EmployeeName.toLowerCase().includes(kw))   
+                    (bill.EmployeeName && bill.EmployeeName.toLowerCase().includes(kw)))   
             }
             currentBillData = data; 
             currentBillPage = 1;

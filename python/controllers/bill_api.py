@@ -3,8 +3,8 @@ import uuid
 from db_config import get_connection, get_json_results, generate_new_id
 
 bill_bp = flask.Blueprint('bill_bp', __name__)
+
 @bill_bp.route('/getall', methods = ['GET'])
-@bill_bp.route('/getall', methods=['GET'])
 def get_all_bills():
     db_conn = get_connection()
     cursor = db_conn.cursor()
