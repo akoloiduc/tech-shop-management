@@ -3,7 +3,7 @@ let currentProductId = null;
 let parentProductData = null; 
 
 document.addEventListener("DOMContentLoaded", function () {
-    // 1. Lấy ProductID từ thanh URL
+    // Lấy ProductID từ thanh URL
     const urlParams = new URLSearchParams(window.location.search);
     currentProductId = urlParams.get('productId');
 
@@ -48,7 +48,7 @@ function loadVariantsOfProduct() {
             return res.json();
         })
         .then(data => {
-            // Chỉ lấy các biến thể của con máy này và chưa bị xóa mềm
+           
             let variants = data.filter(v => v.ProductID === currentProductId && v.IsDeleted === false);
             renderVariantTable(variants);
         })
@@ -68,7 +68,6 @@ function renderVariantTable(variants) {
         let statusBadge = v.Status === 'New' ? 'bg-success' : 'bg-secondary';
         let imgSrc = v.Image ? v.Image : 'https://via.placeholder.com/50?text=No+Img';
 
-        // Truyền cả object variant vào hàm qua JSON.stringify
         let btnView = `<button class="btn btn-sm btn-info text-white me-1" title="Xem Chi tiết" onclick='viewMergedSpecs(${JSON.stringify(v).replace(/'/g, "\\'")})'>
                            <i class="fas fa-eye"></i> Chi tiết
                        </button>`;
@@ -94,13 +93,13 @@ function renderVariantTable(variants) {
     }).join('');
 }
 
-//  HIỂN THỊ MODAL (ẢNH TO + THÔNG SỐ GỘP)
+//  HIỂN THỊ MODAL
 function viewMergedSpecs(variant) {
-    // 1. TẠO ĐỐI TƯỢNG CHỨA TẤT CẢ THÔNG SỐ
+    
     let fullSpecs = {};
 
     // 2. NHẶT TỪ CHA 
-    // Loại bỏ các cột quản lý, còn lại là thông số kỹ thuật (RAM, CPU, Màn hình...)
+    
     if (parentProductData) {
         let excludedParent = ['ProductID', 'ProductName', 'Brand', 'Images', 'CategoryID', 'Information', 'IsDeleted'];
         Object.keys(parentProductData).forEach(key => {
@@ -110,7 +109,7 @@ function viewMergedSpecs(variant) {
         });
     }
 
-    // 3. NHẶT TỪ CON (variant) - Ưu tiên đè lên nếu trùng key
+    // 3. NHẶT TỪ CON 
     let excludedVariant = ['ProductVariantID', 'ProductID', 'Color', 'SellingPrice', 'StockQuantity', 'Image', 'Status', 'IsDeleted', 'Description'];
     Object.keys(variant).forEach(key => {
         if (!excludedVariant.includes(key) && variant[key] !== null && variant[key] !== "") {
@@ -118,7 +117,7 @@ function viewMergedSpecs(variant) {
         }
     });
 
-    // --- VẼ GIAO DIỆN MODAL ---
+   
     let imgSrc = (variant.Image && variant.Image.trim() !== "") ? variant.Image : 'https://via.placeholder.com/250?text=No+Image';
     let priceFormat = (variant.SellingPrice || 0).toLocaleString('vi-VN');
 
@@ -167,18 +166,18 @@ function viewMergedSpecs(variant) {
 }
 // Mở Modal và load danh sách
 function openAddVariantModal() {
-    // Reset form về trạng thái Thêm mới
+    
     const form = document.getElementById('variantForm');
     if (form) form.reset();
 
     document.getElementById('v_ProductVariantID').value = "";
-    document.getElementById('v_DynamicDescArea').innerHTML = ""; // Xóa các dòng thông số cũ
+    document.getElementById('v_DynamicDescArea').innerHTML = ""; 
 
     // Cập nhật giao diện Modal
     document.getElementById('v_ModalTitle').innerText = "Thêm Biến Thể Mới";
     document.getElementById('v_ModalHeader').className = "modal-header bg-success text-white";
 
-    // Hiện Modal (Dùng ID đúng trong Index.cshtml của ông)
+  
     new bootstrap.Modal(document.getElementById('variantEditModal')).show();
 }
 
@@ -202,7 +201,7 @@ function loadVariants(productId) {
         });
 }
 
-// Thêm thông số riêng
+
 function addVariantDescField(key = "", val = "") {
     const container = document.getElementById('v_DynamicDescArea');
     const id = Date.now() + Math.random();
@@ -219,7 +218,7 @@ function addVariantDescField(key = "", val = "") {
 function submitVariant() {
     const variantId = document.getElementById('v_ProductVariantID').value;
 
-    // 1. Thu thập dữ liệu 
+    // Thu thập dữ liệu 
     let payload = {
         ProductID: currentProductId, // Lấy từ biến global đầu file
         Color: document.getElementById('v_Color').value,
@@ -252,7 +251,7 @@ function submitVariant() {
         .catch(err => alert("Lỗi khi lưu: " + err.message));
 }
 
-// 5. Đổ dữ liệu cũ lên form để Sửa
+//  Đổ dữ liệu cũ lên form để Sửa
 function editVariant(variantId) {
     fetch(`http://127.0.0.1:5000/variants/${variantId}`)
         .then(res => res.json())
@@ -283,7 +282,7 @@ function editVariant(variantId) {
         .catch(err => alert("Lỗi tải dữ liệu biến thể: " + err.message));
 }
 
-// 6. Xóa
+// Xóa
 function deleteVariant(variantId, productId) {
     if (confirm("Xóa biến thể này?")) {
         fetch(`http://127.0.0.1:5000/variants/delete/${variantId}`, { method: 'PUT' })

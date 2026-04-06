@@ -254,8 +254,6 @@ def search_products():
                  OR pv.Color LIKE ?
               """
         search_term = f"%{keyword}%"
-
-        # Cần truyền 7 biến search_term tương ứng với 7 dấu chấm hỏi (?) trong câu SQL
         cursor.execute(sql, (
             search_term, search_term, search_term, search_term,
             search_term,

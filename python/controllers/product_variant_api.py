@@ -143,7 +143,7 @@ def add_variant():
         StockQuantity = flask.request.json.get("StockQuantity")
         SellingPrice = flask.request.json.get("SellingPrice")
         Image = flask.request.json.get("Image")
-        IsDeleted = flask.request.json.get("IsDeleted")
+        IsDeleted = flask.request.json.get("IsDeleted",0)
         Status = flask.request.json.get("Status")
         des_dict = flask.request.json.copy()
         

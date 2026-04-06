@@ -193,7 +193,7 @@ function submitEditCustomer() {
         .catch(error => console.error('Lỗi cập nhật:', error));
 }
 
-// XEM LỊCH SỬ MUA HÀNG CỦA KHÁCH HÀNG
+// LỊCH SỬ MUA HÀNG CỦA KHÁCH HÀNG
 function viewCustomerHistory(customerId, customerName) {
     
     document.getElementById('historyCustomerName').innerText = customerName;

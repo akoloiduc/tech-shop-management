@@ -141,7 +141,7 @@ function renderProdPagination() {
                 <a class="page-link" href="#" onclick="changeProdPage(event, ${currentProdPage - 1})">Trước</a>
              </li>`;
 
-    // Phần ở giữa: Hiển thị thông tin "Trang hiện tại / Tổng số trang"
+    // Phần ở giữa:
     html += `<li class="page-item disabled">
                 <span class="page-link bg-light text-dark fw-bold border-0">Trang ${currentProdPage} / ${totalPages}</span>
              </li>`;
@@ -159,7 +159,7 @@ function changeProdPage(e, page) {
     currentProdPage = page;
     renderProdTable();
 }
-// Cấu hình gợi ý các trường nhập liệu theo Category
+
 const specSuggestions = {
     "CAT8": ["Màn hình", "CPU", "RAM", "Ổ cứng", "VGA"],
     "CAT5": ["Màn hình", "Chipset", "Pin", "Camera sau"],
@@ -171,7 +171,6 @@ function renderDynamicFields() {
     const categoryId = document.getElementById('addCategorySelect').value;
     const area = document.getElementById('dynamicSpecArea');
 
-    // Tạo cấu trúc: Các ô gợi ý phía trên, các ô tự thêm phía dưới
     area.innerHTML = `
         <div id="suggestedFields" class="row g-3"></div>
         <div class="col-12 mt-3 border-top pt-2">
@@ -207,7 +206,7 @@ function submitAddProduct() {
     const formData = new FormData(form);
     let payload = Object.fromEntries(formData.entries());
 
-    // 1. Lấy từ các ô gợi ý sẵn có (spec-field) [cite: 30]
+    
     document.querySelectorAll('.spec-field').forEach(input => {
         const key = input.getAttribute('data-key');
         const val = input.value.trim();
@@ -303,14 +302,13 @@ function addEditSpecField(key = "", value = "") {
     area.insertAdjacentHTML('beforeend', html);
 }
 
-// Hàm gửi dữ liệu Cập nhật về Flask
+
 function submitUpdateProduct() {
     const productId = document.getElementById('editProductID').value;
     const form = document.getElementById('editProductForm');
     const formData = new FormData(form);
     let payload = Object.fromEntries(formData.entries());
 
-    // Gom thông số kỹ thuật
     document.querySelectorAll('.edit-spec-row').forEach(row => {
         const key = row.querySelector('.edit-key').value.trim();
         const val = row.querySelector('.edit-val').value.trim();
@@ -330,19 +328,18 @@ function submitUpdateProduct() {
         .catch(err => alert("Lỗi cập nhật: " + err.message));
 }
 
-// ==========================================
-// CHỨC NĂNG XÓA SẢN PHẨM
-// ==========================================
+
+
 
 function deleteProduct(productId) {
     if (confirm(`Bạn có chắc chắn muốn xóa sản phẩm ${productId}? Việc này sẽ xóa cả các biến thể liên quan!`)) {
         fetch(`http://127.0.0.1:5000/products/delete/${productId}`, {
-            method: 'DELETE' // Back-end của ông dùng PUT để xóa mềm 
+            method: 'DELETE' 
         })
             .then(res => res.json())
             .then(data => {
                 alert("Đã xóa sản phẩm thành công!");
-                executeProdSearch(); // Tải lại bảng mà không cần F5
+                executeProdSearch();
             })
             .catch(err => alert("Lỗi khi xóa: " + err.message));
     }

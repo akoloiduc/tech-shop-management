@@ -1,19 +1,19 @@
 ﻿
 
-// ==========================================
-// 1. CÁC BIẾN TOÀN CỤC CHO PHÂN TRANG 
-// ==========================================
-let currentData = []; // Mảng nhớ tạm dữ liệu
-let currentPage = 1;  // Trang hiện hành
-const rowsPerPage = 5; // Số nhân viên hiển thị trên 1 trang
+
+// CÁC BIẾN TOÀN CỤC CHO PHÂN TRANG 
+
+let currentData = [];
+let currentPage = 1;  
+const rowsPerPage = 5;
 
 document.addEventListener("DOMContentLoaded", function () {
     executeSearch();
 });
 
-// ==========================================
-// 2. HÀM TÌM KIẾM
-// ==========================================
+
+//HÀM TÌM KIẾM
+
 function executeSearch() {
     let keyword = document.getElementById('emp_search_input').value;
     let roleFilter = document.getElementById('filterRole').value;
@@ -29,7 +29,7 @@ function executeSearch() {
             return response.json();
         })
         .then(data => {
-            // ĐẢM BẢO DATA LÀ MẢNG THÌ MỚI XỬ LÝ
+            
             if (Array.isArray(data)) {
                 if (roleFilter !== "All") {
                     data = data.filter(emp => emp.Role === roleFilter);
@@ -44,27 +44,25 @@ function executeSearch() {
         })
         .catch(error => {
             console.error('Lỗi khi tìm kiếm:', error);
-            currentData = []; // Tránh lỗi slice()
+            currentData = []; 
             const tableBody = document.getElementById('employeeTableBody');
             tableBody.innerHTML = `<tr><td colspan="7" class="text-center text-danger py-4"><b>Lỗi Backend:</b> ${error.message}</td></tr>`;
             document.querySelector('.pagination').innerHTML = '';
         });
 }
 
-// ==========================================
-// 3. HÀM VẼ BẢNG (ĐÃ TÍCH HỢP CẮT MẢNG)
-// ==========================================
+
 function renderTable() {
     const tableBody = document.getElementById('employeeTableBody');
     let htmlContent = '';
 
     if (!currentData || currentData.length === 0) {
         tableBody.innerHTML = `<tr><td colspan="7" class="text-center text-muted py-4"><i>Không tìm thấy nhân viên nào phù hợp với bộ lọc.</i></td></tr>`;
-        document.querySelector('.pagination').innerHTML = ''; // Giấu luôn nút phân trang nếu ko có ai
+        document.querySelector('.pagination').innerHTML = ''; 
         return;
     }
 
-    // THUẬT TOÁN CẮT MẢNG (Chỉ lấy 5 ông)
+ 
     let startIndex = (currentPage - 1) * rowsPerPage;
     let endIndex = startIndex + rowsPerPage;
     let paginatedData = currentData.slice(startIndex, endIndex);
@@ -110,9 +108,9 @@ function renderTable() {
     renderPagination();
 }
 
-// ==========================================
+
 // 4. HÀM VẼ NÚT PHÂN TRANG (1, 2, 3...)
-// ==========================================
+
 function renderPagination() {
     let totalPages = Math.ceil(currentData.length / rowsPerPage);
     let paginationUl = document.querySelector('.pagination');
@@ -136,9 +134,9 @@ function renderPagination() {
     paginationUl.innerHTML = html;
 }
 
-// ==========================================
+
 // 5. HÀM CHUYỂN TRANG
-// ==========================================
+
 function changePage(event, newPage) {
     event.preventDefault(); // Ngăn web bị giật lên đầu trang
     let totalPages = Math.ceil(currentData.length / rowsPerPage);
@@ -148,7 +146,7 @@ function changePage(event, newPage) {
     }
 }
 function saveNewEmployee() {
-    // 1. Lấy dữ liệu từ các ô input mà người dùng vừa gõ
+
     const empData = {
         FullName: document.getElementById('addFullName').value,
         Role: document.getElementById('addRole').value,
@@ -158,32 +156,30 @@ function saveNewEmployee() {
         Password: document.getElementById('addPassword').value
     };
 
-    // Kiểm tra sơ bộ xem có để trống ô nào không
     if (!empData.FullName || !empData.Phone || !empData.Username || !empData.Password) {
         alert("Vui lòng điền đầy đủ các trường bắt buộc!");
         return;
     }
 
-    // 2. Dùng Fetch API gọi sang cổng 5000 của Python
     fetch('http://127.0.0.1:5000/employees/add', {
-        method: 'POST', // Chuyển phương thức thành POST
+        method: 'POST', 
         headers: {
-            'Content-Type': 'application/json' // Báo cho Python biết tao gửi JSON đấy nhé
+            'Content-Type': 'application/json' 
         },
-        body: JSON.stringify(empData) // Ép cái Object empData thành chuỗi JSON
+        body: JSON.stringify(empData) 
     })
         .then(response => {
             return response.json().then(data => ({ status: response.status, body: data }));
         })
         .then(result => {
-            // Nếu Python trả về HTTP Status 200 (Thành công)
+            
             if (result.status === 200) {
                 alert("Thêm nhân viên thành công!");
 
-                // Xóa trắng form để lần sau mở lên nhập tiếp
+                
                 document.getElementById('formAddEmployee').reset();
 
-                // Đóng cái cửa sổ Modal đi
+                // Đóng cái cửa sổ Modal
                 var myModalEl = document.getElementById('addEmployeeModal');
                 var modal = bootstrap.Modal.getInstance(myModalEl);
                 modal.hide();
@@ -191,7 +187,7 @@ function saveNewEmployee() {
              
                 executeSearch();
             }
-            // Nếu Python báo lỗi (Trùng Username, SĐT... - Status 400 hoặc 500)
+            // Python báo lỗi 
             else {
                 alert("Lỗi: " + (result.body.mess || result.body.error));
             }
@@ -203,9 +199,9 @@ function saveNewEmployee() {
 }
 // Hàm Xóa nhân viên
 function deleteEmployee(id) {
-    // 1. Cảnh báo trước khi xóa (Cực kỳ quan trọng trong UI/UX)
+    
     if (!confirm(`Bạn có chắc chắn muốn xóa nhân viên có mã [${id}] không? Hành động này sẽ xóa luôn cả tài khoản đăng nhập của người này và không thể khôi phục!`)) {
-        return; // Nếu user bấm Cancel (Hủy) thì dừng luôn không làm gì cả
+        return; 
     }
 
     fetch(`http://127.0.0.1:5000/employees/delete/${id}`, {
@@ -215,7 +211,7 @@ function deleteEmployee(id) {
             return response.json().then(data => ({ status: response.status, body: data }));
         })
         .then(result => {
-            // Nếu Python trả về HTTP Status 200 (Xóa thành công)
+      
             if (result.status === 200) {
                 alert("Đã tiễn nhân viên lên đường thành công!");
 
