@@ -137,7 +137,7 @@ def confirm_purchase_order(ID):
         if status_list[0]['Status'] == 'Pending Payment':
             return flask.jsonify({"error": "This order has been confirmed before"}), 400
         
-        cursor.execute("UPDATE PurchaseOrder SET Status = 'Pending Payment' WHERE PurchaseOrderID = ?", (ID,))
+        cursor.execute("UPDATE PurchaseOrder SET Status = 'Completed' WHERE PurchaseOrderID = ?", (ID,))
         update_stock_query = """
             UPDATE pv
             SET pv.StockQuantity = pv.StockQuantity + pod.NumOrder
@@ -173,6 +173,59 @@ def pay_purchase_order(ID):
         db_conn.commit()
         return flask.jsonify({"message": "Confirmed and stock updated successfully!"}), 200
     
+    except Exception as e:
+        if db_conn:
+            db_conn.rollback()
+        return flask.jsonify({"error": str(e)}), 500
+    finally:
+        if db_conn:
+            db_conn.close()
+
+
+@purchase_order_bp.route('/<ID>/receive', methods=['POST'])
+def receive_purchase_order(ID):
+    db_conn = get_connection()
+    cursor = db_conn.cursor()
+    try:
+        cursor.execute("SELECT Status FROM PurchaseOrder WHERE PurchaseOrderID = ?", (ID,))
+        row = cursor.fetchone()
+        if row is None:
+            return flask.jsonify({"error": "Order not found"}), 404
+        current_status = row[0]
+        forbidden_statuses = ['Completed', 'Cancelled', 'Received']
+        if current_status in forbidden_statuses:
+            return flask.jsonify({
+                "error": f"Cannot cancel order because it is already {current_status}"
+            }), 400
+        cursor.execute("UPDATE PurchaseOrder SET Status = 'Received' WHERE PurchaseOrderID = ?", (ID,))
+        db_conn.commit()
+        return flask.jsonify({"message": "Nhận hàng thành công!"}), 200
+
+    except Exception as e:
+        if db_conn:
+            db_conn.rollback()
+        return flask.jsonify({"error": str(e)}), 500
+    finally:
+        if db_conn:
+            db_conn.close()
+
+@purchase_order_bp.route('/<ID>/order', methods=['POST'])
+def order_purchase_order(ID):
+    db_conn = get_connection()
+    cursor = db_conn.cursor()
+    try:
+        cursor.execute("SELECT Status FROM PurchaseOrder WHERE PurchaseOrderID = ?", (ID,))
+        row = cursor.fetchone()
+        if row is None:
+            return flask.jsonify({"error": "Order not found"}), 404
+        current_status = row[0]
+        if current_status in ['Draft']:
+            cursor.execute("UPDATE PurchaseOrder SET Status = 'Ordered' WHERE PurchaseOrderID = ?", (ID,))
+            db_conn.commit()
+            return flask.jsonify({"message": "Đặt hàng thành công!"}), 200
+        return flask.jsonify({
+            "error": f"Order is already {current_status}"
+        }), 400
     except Exception as e:
         if db_conn:
             db_conn.rollback()

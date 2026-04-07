@@ -79,8 +79,10 @@ function renderOrderTable() {
     tbody.innerHTML = paginatedData.map(po => {
         let badgeClass = "bg-primary";
         if (po.Status === "Completed") badgeClass = "bg-success";
-        else if (po.Status === "Draft") badgeClass = "bg-secondary";
-        else if (po.Status === "Shipping") badgeClass = "bg-info";
+        if (po.Status === "Ordered") badgeClass = "bg-warning text-dark";
+        else if (po.Status === "Received") badgeClass = "bg-info";
+       
+   
 
         let actionButtons = `
            <button class="btn btn-sm btn-light text-primary me-1" title="Xem chi tiết" onclick="viewOrderDetail('${po.PurchaseOrderID}')">
@@ -89,15 +91,17 @@ function renderOrderTable() {
 
         if (po.Status === "Draft") {
            
-            actionButtons += `<button class="btn btn-sm btn-light text-success me-1" title="Duyệt & Nhập kho" onclick="confirmOrder('${po.PurchaseOrderID}')"><i class="fas fa-check-circle"></i></button>`;
-           
-            actionButtons += `<button class="btn btn-sm btn-light text-danger" title="Xóa nháp" onclick="deleteOrder('${po.PurchaseOrderID}')"><i class="fas fa-trash" ></i></button>`;
+            actionButtons += `<button class="btn btn-sm btn-light text-warning me-1" title="Đặt hàng" onclick="placeOrder('${po.PurchaseOrderID}')"><i class="fas fa-paper-plane"></i></button>`;
+            actionButtons += `<button class="btn btn-sm btn-light text-danger" title="Xóa nháp" onclick="deleteOrder('${po.PurchaseOrderID}')"><i class="fas fa-trash"></i></button>`;
         }
         
-        else if (po.Status === "Processing" || po.Status === "Pending Payment") {
-            actionButtons += `<button class="btn btn-sm btn-light text-success me-1" title="Thanh toán & Hoàn thành" onclick="payOrder('${po.PurchaseOrderID}')"><i class="fas fa-dollar-sign"></i></button>`;
+        else if (po.Status === "Ordered") {
+             actionButtons += `<button class="btn btn-sm btn-light text-info me-1" title="Xác nhận hàng về" onclick="receiveOrder('${po.PurchaseOrderID}')"><i class="fas fa-truck"></i></button>`;
+            // actionButtons += `<button class="btn btn-sm btn-light text-success me-1" title="Thanh toán & Hoàn thành" onclick="payOrder('${po.PurchaseOrderID}')"><i class="fas fa-dollar-sign"></i></button>`;
         }
-
+        else if (po.Status === "Received") {
+            actionButtons += `<button class="btn btn-sm btn-light text-success me-1" title="Duyệt nhập kho & Thanh toán" onclick="confirmOrder('${po.PurchaseOrderID}')"><i class="fas fa-check-double"></i></button>`;
+        }
         let dateDisplay = 'Đang cập nhật';
         if (po.OrderDate) {
             let d = new Date(po.OrderDate);
@@ -299,49 +303,8 @@ function viewOrderDetail(poId) {
         })
         .catch(err => alert("Lỗi tải chi tiết: " + err.message));
 }
-// DUYỆT PHIẾU
-function confirmOrder(poId) {
-    if (confirm(`Bạn có chắc muốn duyệt phiếu ${poId}? Số lượng sẽ được CỘNG THẲNG vào tồn kho.`)) {
-
-       
-        fetch(`http://127.0.0.1:5000/purchase_orders/${poId}/confirm`, {
-            method: 'POST'
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.message) {
-                    alert(data.message); 
-                    location.reload();
-                } else {
-                    alert("Lỗi: " + (data.error || "Không thể duyệt phiếu"));
-                }
-            })
-            .catch(err => alert("Lỗi kết nối: " + err.message));
-    }
-}
 
 
-// THANH TOÁN PHIẾU NHẬP
-function payOrder(poId) {
-    if (confirm(`Xác nhận đã thanh toán tiền cho nhà cung cấp của phiếu ${poId}?`)) {
-
-        fetch(`http://127.0.0.1:5000/purchase_orders/${poId}/pay`, {
-            method: 'POST'
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.message) {
-                    alert("Đã cập nhật trạng thái thành Completed!");
-                    location.reload();
-                } else {
-                    alert("Lỗi: " + (data.error || "Không thể thanh toán"));
-                }
-            })
-            .catch(err => alert("Lỗi kết nối: " + err.message));
-    }
-}
-
-// XÓA PHIẾU NHẬP 
 
 function deleteOrder(poId) {
     if (confirm(`Bạn có chắc chắn muốn xóa bản nháp ${poId} không? Hành động này không thể hoàn tác!`)) {
@@ -358,5 +321,38 @@ function deleteOrder(poId) {
                 }
             })
             .catch(err => alert("Lỗi kết nối đến máy chủ: " + err.message));
+    }
+}
+// Draft -> Ordered
+function placeOrder(poId) {
+    if (confirm(`Xác nhận đặt hàng phiếu ${poId}?`)) {
+        fetch(`http://127.0.0.1:5000/purchase_orders/${poId}/order`, { method: 'POST' })
+            .then(res => res.json())
+            .then(data => {
+                alert(data.message || "Đã chuyển sang trạng thái Ordered");
+                loadPurchaseOrders();
+            });
+    }
+}
+// Ordered -> Received
+function receiveOrder(poId) {
+    if (confirm(`Xác nhận hàng của phiếu ${poId} đã về đến kho và đang chờ kiểm tra?`)) {
+        fetch(`http://127.0.0.1:5000/purchase_orders/${poId}/receive`, { method: 'POST' })
+            .then(res => res.json())
+            .then(data => {
+                alert(data.message || "Trạng thái: Đã nhận hàng");
+                loadPurchaseOrders();
+            });
+    }
+}
+// Received -> Completed
+function confirmOrder(poId) {
+    if (confirm(`Xác nhận kiểm hàng xong cho phiếu ${poId}? Hệ thống sẽ CỘNG KHO và Hoàn tất đơn.`)) {
+        fetch(`http://127.0.0.1:5000/purchase_orders/${poId}/confirm`, { method: 'POST' })
+            .then(res => res.json())
+            .then(data => {
+                alert(data.message || "Nhập kho thành công!");
+                loadPurchaseOrders();
+            });
     }
 }

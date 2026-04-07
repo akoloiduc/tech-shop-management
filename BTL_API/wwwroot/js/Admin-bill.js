@@ -50,7 +50,7 @@ function renderBillTable() {
         let badge = '';
         let actionButtons = `<button class="btn btn-sm btn-light text-primary me-1" title="Xem chi tiết" onclick="viewBillDetails('${bill.BillID}', ${bill.TotalPrice})"><i class="fas fa-eye"></i></button>`;
 
-        // UPDATE LOGIC TRẠNG THÁI TẠI ĐÂY
+      
         if (bill.Status === 'Draft') {
             badge = `<span class="badge bg-warning text-dark">Nháp</span>`;
             actionButtons += `<button class="btn btn-sm btn-light text-primary me-1" title="Chốt & Giao hàng" onclick="checkoutBill('${bill.BillID}')"><i class="fas fa-truck"></i></button>`;
@@ -74,7 +74,7 @@ function renderBillTable() {
             badge = `<span class="badge bg-dark">Trả hàng (Đã hoàn kho)</span>`;
         }
         else if (bill.Status === 'Cancelled') {
-            badge = `<span class="badge bg-secondary">Đã hủy</span>`;
+            badge = `<span class="badge text-bg-danger">Đã hủy</span>`;
         }
 
         let orderDate = bill.DateOrder ? new Date(bill.DateOrder).toLocaleString('vi-VN') : '-';
@@ -247,7 +247,7 @@ function changeBillPage(e, page) {
 // MỞ FORM TẠO ĐƠN HÀNG 
 function openAddBillModal() {
     document.getElementById('addCustomerID').value = '';
-    document.getElementById('addPayMethod').value = 'Tiền mặt';
+    document.getElementById('addPayMethod').value = 'Cash';
     document.getElementById('billDetailArea').innerHTML = '';
     addBillDetailRow();
 
