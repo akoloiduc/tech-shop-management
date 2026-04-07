@@ -131,24 +131,26 @@ def confirm_purchase_order(ID):
     cursor = db_conn.cursor()
     try:
         cursor.execute("SELECT Status FROM PurchaseOrder WHERE PurchaseOrderID = ?", (ID,))
-        status_list = get_json_results(cursor)
-        if not status_list:
-            return flask.jsonify({"error": "Not found"}), 404
-        if status_list[0]['Status'] == 'Pending Payment':
-            return flask.jsonify({"error": "This order has been confirmed before"}), 400
-        
-        cursor.execute("UPDATE PurchaseOrder SET Status = 'Pending Payment' WHERE PurchaseOrderID = ?", (ID,))
+        row = cursor.fetchone()
+        if not row:
+            return flask.jsonify({"error": "Order not found"}), 404
+        status = row[0]
+        if status == 'Completed':
+            return flask.jsonify({"error": "This order has already been completed"}), 400    
+        if status != 'Received':
+            return flask.jsonify({"error": f"Cannot confirm order with current status: {status}"}), 400
+        cursor.execute("UPDATE PurchaseOrder SET Status = 'Completed' WHERE PurchaseOrderID = ?", (ID,))
         update_stock_query = """
-            UPDATE pv
-            SET pv.StockQuantity = pv.StockQuantity + pod.NumOrder
-            FROM Productvariant pv
-            JOIN PurchaseOrderDetail pod ON pv.ProductVariantID = pod.ProductVariantID
-            WHERE pod.PurchaseOrderID = ?
-            """
-        cursor.execute(update_stock_query, (ID,))
+            UPDATE Productvariant
+            SET StockQuantity = StockQuantity + pod.NumOrder
+            FROM PurchaseOrderDetail pod
+            WHERE Productvariant.ProductVariantID = pod.ProductVariantID
+            AND pod.PurchaseOrderID = ?
+        """
+        cursor.execute(update_stock_query, (ID,))      
         db_conn.commit()
-    
-        return flask.jsonify({"message": "Confirmed and stock updated successfully!"}), 200
+        return flask.jsonify({"message": "Order confirmed and stock updated successfully!"}), 200
+
     except Exception as e:
         if db_conn:
             db_conn.rollback()
@@ -172,6 +174,60 @@ def pay_purchase_order(ID):
         cursor.execute("UPDATE PurchaseOrder SET Status = 'Completed' WHERE PurchaseOrderID = ?", (ID,))
         db_conn.commit()
         return flask.jsonify({"message": "Confirmed and stock updated successfully!"}), 200
+    
+    except Exception as e:
+        if db_conn:
+            db_conn.rollback()
+        return flask.jsonify({"error": str(e)}), 500
+    finally:
+        if db_conn:
+            db_conn.close()
+
+@purchase_order_bp.route('/<ID>/cancel', methods=['POST'])
+def cancel_purchase_order(ID):
+    db_conn = get_connection()
+    cursor = db_conn.cursor()
+    try:
+        cursor.execute("SELECT Status FROM PurchaseOrder WHERE PurchaseOrderID = ?", (ID,))
+        row = cursor.fetchone()        
+        if row is None:
+            return flask.jsonify({"error": "Order not found"}), 404        
+        current_status = row[0] 
+        forbidden_statuses = ['Completed', 'Cancelled', 'Received']
+        if current_status in forbidden_statuses:
+            return flask.jsonify({
+                "error": f"Cannot cancel order because it is already {current_status}"
+            }), 400
+        cursor.execute("UPDATE PurchaseOrder SET Status = 'Cancelled' WHERE PurchaseOrderID = ?", (ID,))
+        db_conn.commit()        
+        return flask.jsonify({"message": "Order cancelled successfully!"}), 200
+    
+    except Exception as e:
+        if db_conn:
+            db_conn.rollback()
+        return flask.jsonify({"error": str(e)}), 500
+    finally:
+        if db_conn:
+            db_conn.close()
+
+@purchase_order_bp.route('/<ID>/receive', methods=['POST'])
+def receive_purchase_order(ID):
+    db_conn = get_connection()
+    cursor = db_conn.cursor()
+    try:
+        cursor.execute("SELECT Status FROM PurchaseOrder WHERE PurchaseOrderID = ?", (ID,))
+        row = cursor.fetchone()        
+        if row is None:
+            return flask.jsonify({"error": "Order not found"}), 404        
+        current_status = row[0] 
+        forbidden_statuses = ['Completed', 'Cancelled', 'Received']
+        if current_status in forbidden_statuses:
+            return flask.jsonify({
+                "error": f"Cannot cancel order because it is already {current_status}"
+            }), 400
+        cursor.execute("UPDATE PurchaseOrder SET Status = 'Received' WHERE PurchaseOrderID = ?", (ID,))
+        db_conn.commit()        
+        return flask.jsonify({"message": "Receive successfully!"}), 200
     
     except Exception as e:
         if db_conn:
