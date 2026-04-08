@@ -54,23 +54,6 @@ def get_all_variant():
                 del v['ProductImages']
             # =======================================================
 
-            # Xử lý Description cực kỳ cẩn thận
-            specs_str = v.get('Description')
-            if specs_str:
-                try:
-                    if specs_str.strip().startswith('{'):
-                        specs_dict = flask.json.loads(specs_str)
-                        if isinstance(specs_dict, dict):
-                            for key, value in specs_dict.items():
-                                v[key] = value
-                    else:
-                        v['Note'] = specs_str
-                except Exception:
-                    pass
-
-            if 'Description' in v:
-                del v['Description']
-
         cursor.close()
         return flask.jsonify(variants), 200
 
