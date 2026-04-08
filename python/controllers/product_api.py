@@ -175,7 +175,8 @@ def get_product_variant(ID):
     cursor = db_conn.cursor()
     try:
         query = """
-                SELECT * FROM Productvariant pv 
+                SELECT pv.*, pro.ProductName, pro.Brand, pro.CategoryID 
+                FROM Productvariant pv 
                 JOIN Product pro ON pv.ProductID = pro.ProductID 
                 WHERE pv.ProductID = ? AND pv.IsDeleted = 0
                 """
@@ -183,7 +184,6 @@ def get_product_variant(ID):
         variants = get_json_results(cursor)
 
         if not variants:
-            cursor.close()
             return flask.jsonify({"message": "Can't find this product!"}), 404
 
         for v in variants:
@@ -205,36 +205,16 @@ def get_product_variant(ID):
                                 v[group_name] = group_details if group_details is not None else ""
                 except json.JSONDecodeError:
                     pass
-            if 'Information' in v:
-                del v['Information']
-
-            desc_str = v.get('Description')
-            if desc_str:
-                try:
-                    if desc_str.strip().startswith('{'):
-                        desc_dict = json.loads(desc_str)
-                        if isinstance(desc_dict, dict):
-                            for group_name, group_details in desc_dict.items():
-                                if isinstance(group_details, dict):
-                                    for detail_key, detail_value in group_details.items():
-                                        v[detail_key] = detail_value if detail_value is not None else ""
-                                else:
-                                    v[group_name] = group_details if group_details is not None else ""
-                    else:
-                        v['Note'] = desc_str
-                except json.JSONDecodeError:
-                    v['Note'] = desc_str
-            if 'Description' in v:
-                del v['Description']
-
-        cursor.close()
+            v.pop('Information', None)
         return flask.jsonify(variants), 200
 
     except Exception as e:
-        if cursor:
-            cursor.close()
+        db_conn.rollback()
         return flask.jsonify({"error": str(e)}), 500
-
+        
+    finally:
+        cursor.close()
+        db_conn.close()
 
 @product_bp.route('/search', methods=['POST'])
 def search_products():
