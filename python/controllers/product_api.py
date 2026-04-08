@@ -6,7 +6,6 @@ from db_config import get_connection, get_json_results, generate_new_id
 
 product_bp = flask.Blueprint('product_bp', __name__)
 
-
 @product_bp.route('/getall', methods=['GET'])
 def get_all_product():
     db_conn = get_connection()
@@ -36,6 +35,9 @@ def get_all_product():
         if cursor:
             cursor.close()
         return flask.jsonify({"error": str(e)}), 500
+    finally:
+        cursor.close()
+        db_conn.close()
 
 
 @product_bp.route('/<ID>', methods=['GET'])
@@ -69,6 +71,9 @@ def get_product_by_id(ID):
         if cursor:
             cursor.close()
         return flask.jsonify({"error": str(e)}), 500
+    finally: 
+        cursor.close()
+        db_conn.close()
 
 
 @product_bp.route('/add', methods=['POST'])
@@ -132,27 +137,54 @@ def update_product(ID):
     db_conn = get_connection()
     cursor = db_conn.cursor()
     try:
-        ProductName = flask.request.json.get("ProductName")
-        Brand = flask.request.json.get("Brand")
-        CategoryID = flask.request.json.get("CategoryID")
-        Images = flask.request.json.get("Images")
-
-        info_dict = flask.request.json.copy()
-        main_columns = ["ProductID", "ProductName", "Brand", "CategoryID", "Images"]
-        for col in main_columns:
-            info_dict.pop(col, None)
-
-        Information = json.dumps(info_dict, ensure_ascii=False) if info_dict else None
-
-        cursor.execute("SELECT ProductID FROM Product WHERE ProductID = ?", (ID,))
-        if not cursor.fetchone():
+        cursor.execute("SELECT ProductName, Brand, Images, Information, CategoryID FROM Product WHERE ProductID = ?", (ID,))
+        old_product = cursor.fetchone()
+        
+        if not old_product:
             return flask.jsonify({"message": "Product not found!"}), 404
 
-        cursor.execute("SELECT CategoryID FROM Category WHERE CategoryID = ?", (CategoryID,))
-        if not cursor.fetchone():
-            return flask.jsonify({"message": "Category does not exist!"}), 400
+        old_ProductName, old_Brand, old_Images, old_Information, old_CategoryID = old_product
 
-        # SỬA LỖI: Cột Images (có s)
+        payload = flask.request.json or {}
+        
+        new_CategoryID = payload.get("CategoryID")
+        if new_CategoryID and new_CategoryID != old_CategoryID:
+            cursor.execute("SELECT CategoryID FROM Category WHERE CategoryID = ?", (new_CategoryID,))
+            if not cursor.fetchone():
+                return flask.jsonify({"message": "Category does not exist!"}), 400
+
+        ProductName = payload.get("ProductName", old_ProductName)
+        Brand = payload.get("Brand", old_Brand)
+        CategoryID = payload.get("CategoryID", old_CategoryID)
+        Images = payload.get("Images", old_Images)
+
+        info_dict = payload.copy()
+        for col in ["ProductID", "ProductName", "Brand", "CategoryID", "Images"]:
+            info_dict.pop(col, None)
+
+        final_info = {}
+        if old_Information:
+            try:
+                final_info = json.loads(old_Information)
+            except json.JSONDecodeError:
+                pass
+                
+        new_fe_info = {}
+        if "Information" in info_dict:
+            fe_info = info_dict.pop("Information")
+            if isinstance(fe_info, str):
+                try:
+                    new_fe_info = json.loads(fe_info)
+                except json.JSONDecodeError:
+                    pass
+            elif isinstance(fe_info, dict):
+                new_fe_info = fe_info
+                
+        final_info.update(new_fe_info)
+        final_info.update(info_dict)
+        
+        Information = json.dumps(final_info, ensure_ascii=False) if final_info else None
+
         query = """
                 UPDATE Product 
                 SET ProductName = ?, Brand = ?, Images = ?, Information = ?, CategoryID = ?
@@ -164,8 +196,12 @@ def update_product(ID):
         return flask.jsonify({"message": "Update Success!"}), 200
 
     except Exception as e:
+        db_conn.rollback()
         return flask.jsonify({"error": str(e)}), 500
-
+        
+    finally:
+        cursor.close()
+        db_conn.close()
 
 @product_bp.route('/delete/<ID>', methods=['DELETE'])
 def delete_product(ID):
@@ -174,14 +210,20 @@ def delete_product(ID):
     try:
         query = "DELETE FROM Productvariant WHERE ProductID = ?"
         cursor.execute(query, (ID,))
+        
         query = "DELETE FROM Product WHERE ProductID = ?"
         cursor.execute(query, (ID,))
+        
         db_conn.commit()
-
         return flask.jsonify({"message": "Success!"}), 200
-    except Exception as e:
-        return flask.jsonify({"error": str(e)}), 500
 
+    except Exception as e:
+        db_conn.rollback() 
+        return flask.jsonify({"error": str(e)}), 500
+        
+    finally: 
+        cursor.close()
+        db_conn.close()
 
 @product_bp.route('/<ID>/variants', methods=['GET'])
 def get_product_variant(ID):
@@ -223,9 +265,7 @@ def get_product_variant(ID):
         return flask.jsonify(variants), 200
 
     except Exception as e:
-        db_conn.rollback()
-        return flask.jsonify({"error": str(e)}), 500
-        
+        return flask.jsonify({"error": str(e)}), 500        
     finally:
         cursor.close()
         db_conn.close()
