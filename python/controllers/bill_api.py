@@ -219,37 +219,7 @@ def cancel_bill(id):
     except Exception as e:
         db_conn.rollback()
         return flask.jsonify({"error": str(e)}), 500
-# CHECKOUT: Frontend calls this after creating bill + details
-@bill_bp.route('/<id>/checkout', methods=['POST'])
-def checkout_bill(id):
-    try:
-        db_conn = get_connection()
-        cursor = db_conn.cursor()
 
-        cursor.execute("SELECT Status FROM Bill WHERE BillID = ?", (id,))
-        status_row = cursor.fetchone()
-        if not status_row or status_row[0] != 'Pending':
-            return flask.jsonify({"mess": "Chỉ có thể checkout đơn ở trạng thái Pending!"}), 400
-
-        # Kiểm tra và trừ tồn kho
-        cursor.execute("SELECT ProductVariantID, Num FROM BillDetail WHERE BillID = ?", (id,))
-        details = cursor.fetchall()
-        for detail in details:
-            variant_id, num_order = detail[0], detail[1]
-            cursor.execute("SELECT StockQuantity FROM ProductVariant WHERE ProductVariantID = ?", (variant_id,))
-            stock_row = cursor.fetchone()
-            if not stock_row or stock_row[0] < num_order:
-                return flask.jsonify({"mess": f"Sản phẩm {variant_id} không đủ tồn kho (Còn: {stock_row[0] if stock_row else 0})"}), 400
-
-            cursor.execute("UPDATE ProductVariant SET StockQuantity = StockQuantity - ? WHERE ProductVariantID = ?",
-                           (num_order, variant_id))
-
-        cursor.execute("UPDATE Bill SET Status = 'Confirmed' WHERE BillID = ?", (id,))
-        db_conn.commit()
-        return flask.jsonify({"mess": "Đặt hàng thành công!"}), 200
-    except Exception as e:
-        db_conn.rollback()
-        return flask.jsonify({"error": str(e)}), 500
 
 @bill_bp.route('/<id>/stock', methods = ['GET'])
 def check_stock(id):
