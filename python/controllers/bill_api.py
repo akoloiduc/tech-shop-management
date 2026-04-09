@@ -49,7 +49,7 @@ def create_bill():
         cus_id = flask.request.json.get("CustomerID")
         emp_id = flask.request.json.get("EmployeeID")
         payment_method = flask.request.json.get("PaymentMethod")
-        status = flask.request.json.get("Status", "Draft")
+        status = flask.request.json.get("Status", "Pending")
         total = flask.request.json.get("TotalPrice", 0)
         db_conn = get_connection()
         cursor = db_conn.cursor()
@@ -164,16 +164,10 @@ def ship_bill(id):
     return update_bill_status(id, 'Packaged', 'In_transit', "Đơn hàng đã được giao cho đơn vị vận chuyển!")
 
 
-# 5. ĐÃ GIAO HÀNG (In_transit -> Delivered) - Chờ đổi trả
-@bill_bp.route('/<id>/deliver', methods=['POST'])
-def deliver_bill(id):
-    return update_bill_status(id, 'In_transit', 'Delivered', "Khách đã nhận hàng. Bắt đầu thời gian chờ đổi trả.")
-
-
-# 6. HOÀN THÀNH (Delivered -> Completed)
+# 5. HOÀN THÀNH - GIAO HÀNG THÀNH CÔNG (In_transit -> Completed)
 @bill_bp.route('/<id>/complete', methods=['POST'])
 def complete_bill(id):
-    return update_bill_status(id, 'Delivered', 'Completed', "Đơn hàng đã hoàn thành!")
+    return update_bill_status(id, 'In_transit', 'Completed', "Đơn hàng đã được giao thành công và hoàn thành!")
 
 
 # Hàm Helper dùng chung để update các trạng thái không có logic phức tạp
@@ -194,7 +188,7 @@ def update_bill_status(bill_id, current_status, new_status, success_msg):
         return flask.jsonify({"error": str(e)}), 500
 
 
-# 7. HỦY ĐƠN VÀ HOÀN TỒN KHO
+# 6. HỦY ĐƠN VÀ HOÀN TỒN KHO
 @bill_bp.route('/<id>/cancel', methods=['POST'])
 def cancel_bill(id):
     try:
@@ -203,7 +197,7 @@ def cancel_bill(id):
         cursor.execute("SELECT Status FROM Bill WHERE BillID = ?", (id,))
         status = cursor.fetchone()[0]
 
-        if status in ('Cancelled', 'Returned', 'Completed'):
+        if status in ('Cancelled', 'Completed'):
             return flask.jsonify({"mess": "Không thể hủy đơn hàng ở trạng thái này!"}), 400
 
         # Nếu đã qua bước Confirmed (tức là đã bị trừ kho) -> Phải hoàn lại kho
@@ -219,6 +213,8 @@ def cancel_bill(id):
     except Exception as e:
         db_conn.rollback()
         return flask.jsonify({"error": str(e)}), 500
+
+
 @bill_bp.route('/<id>/stock', methods = ['GET'])
 def check_stock(id):
     db_conn = get_connection()
