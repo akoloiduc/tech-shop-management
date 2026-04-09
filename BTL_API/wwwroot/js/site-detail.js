@@ -88,11 +88,11 @@ async function loadProductDetail(productId) {
                     <div class="detail-price" id="detailPrice">${defaultVariant ? formatPrice(defaultVariant.SellingPrice) : 'Liên hệ'}</div>
 
                     ${variantList.length > 0 ? (() => {
-                        // Group variants by version (Note field = Description)
+                        // Group variants by version
                         const versions = [];
                         const versionMap = {};
                         variantList.forEach((v, i) => {
-                            const ver = v.Note || v.Description || '';
+                            const ver = v.Version || '';
                             if (!versionMap[ver]) {
                                 versionMap[ver] = [];
                                 versions.push(ver);
@@ -174,7 +174,7 @@ async function loadProductDetail(productId) {
         // Build version map
         window._versionMap = {};
         variantList.forEach((v, i) => {
-            const ver = v.Note || v.Description || '';
+            const ver = v.Version || '';
             if (!window._versionMap[ver]) window._versionMap[ver] = [];
             window._versionMap[ver].push({ variant: v, idx: i });
         });

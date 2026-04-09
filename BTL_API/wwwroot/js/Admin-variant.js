@@ -53,14 +53,14 @@ function loadVariantsOfProduct() {
             renderVariantTable(variants);
         })
         .catch(err => {
-            document.getElementById('variantTableBody').innerHTML = `<tr><td colspan="7" class="text-center text-danger">Lỗi kết nối Server: ${err.message}</td></tr>`;
+            document.getElementById('variantTableBody').innerHTML = `<tr><td colspan="8" class="text-center text-danger">Lỗi kết nối Server: ${err.message}</td></tr>`;
         });
 }
 
 function renderVariantTable(variants) {
     const tbody = document.getElementById('variantTableBody');
     if (variants.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="7" class="text-center text-muted py-4"><i>Sản phẩm này chưa có phiên bản/cấu hình nào.</i></td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="8" class="text-center text-muted py-4"><i>Sản phẩm này chưa có phiên bản/cấu hình nào.</i></td></tr>`;
         return;
     }
 
@@ -76,6 +76,7 @@ function renderVariantTable(variants) {
         <tr>
             <td><strong>${v.ProductVariantID}</strong></td>
             <td><img src="${imgSrc}" class="border rounded bg-white shadow-sm" style="width: 45px; height: 45px; object-fit: contain;"></td>
+            <td><span class="fw-semibold">${v.Version || '-'}</span></td>
             <td><span class="fw-semibold text-dark">${v.Color || '-'}</span></td>
             <td class="text-danger fw-bold">${(v.SellingPrice || 0).toLocaleString('vi-VN')} đ</td>
             <td class="text-center"><span class="badge bg-light text-dark border">${v.StockQuantity || 0}</span></td>
@@ -110,7 +111,7 @@ function viewMergedSpecs(variant) {
     }
 
     // 3. NHẶT TỪ CON 
-    let excludedVariant = ['ProductVariantID', 'ProductID', 'Color', 'SellingPrice', 'StockQuantity', 'Image', 'Status', 'IsDeleted', 'Description'];
+    let excludedVariant = ['ProductVariantID', 'ProductID', 'Color', 'SellingPrice', 'StockQuantity', 'Image', 'Status', 'IsDeleted', 'Description', 'Version'];
     Object.keys(variant).forEach(key => {
         if (!excludedVariant.includes(key) && variant[key] !== null && variant[key] !== "") {
             fullSpecs[key] = variant[key];
@@ -225,7 +226,8 @@ function submitVariant() {
         SellingPrice: document.getElementById('v_SellingPrice').value,
         StockQuantity: document.getElementById('v_StockQuantity').value,
         Image: document.getElementById('v_Image').value,
-        Status: document.getElementById('v_Status').value
+        Status: document.getElementById('v_Status').value,
+        Version: document.getElementById('v_Version').value
     };
 
    
@@ -263,12 +265,13 @@ function editVariant(variantId) {
             document.getElementById('v_StockQuantity').value = v.StockQuantity || 0;
             document.getElementById('v_Image').value = v.Image || "";
             document.getElementById('v_Status').value = v.Status || "New";
+            document.getElementById('v_Version').value = v.Version || "";
 
             // Đổ phần thông số kỹ thuật riêng (Description)
             const container = document.getElementById('v_DynamicDescArea');
             container.innerHTML = '';
 
-            const excluded = ['ProductVariantID', 'ProductID', 'Color', 'SellingPrice', 'StockQuantity', 'Image', 'Status', 'IsDeleted', 'Description'];
+            const excluded = ['ProductVariantID', 'ProductID', 'Color', 'SellingPrice', 'StockQuantity', 'Image', 'Status', 'IsDeleted', 'Description', 'Version'];
             Object.keys(v).forEach(key => {
                 if (!excluded.includes(key) && v[key] !== null) {
                     addVariantDescField(key, v[key]);

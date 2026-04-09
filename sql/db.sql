@@ -82,6 +82,7 @@ CREATE TABLE ProductVariant (
     SellingPrice DECIMAL(18,2) NOT NULL,
     StockQuantity INT DEFAULT 0,
     Description NVARCHAR(MAX),
+    Version NVARCHAR(100),
     Image NVARCHAR(255),
     Status VARCHAR(20) DEFAULT 'New',
     IsDeleted BIT DEFAULT 0

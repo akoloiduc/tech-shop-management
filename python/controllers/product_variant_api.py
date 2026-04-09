@@ -63,8 +63,6 @@ def get_all_variant():
                         if isinstance(specs_dict, dict):
                             for key, value in specs_dict.items():
                                 v[key] = value
-                    else:
-                        v['Note'] = specs_str
                 except Exception:
                     pass
 
@@ -145,9 +143,10 @@ def add_variant():
         Image = flask.request.json.get("Image")
         IsDeleted = flask.request.json.get("IsDeleted",0)
         Status = flask.request.json.get("Status")
+        Version = flask.request.json.get("Version")
         des_dict = flask.request.json.copy()
         
-        main_columns = ["ProductVariantID", "ProductID", "Color", "SellingPrice", "StockQuantity", "IsDeleted", "Image", "Status"]
+        main_columns = ["ProductVariantID", "ProductID", "Color", "SellingPrice", "StockQuantity", "IsDeleted", "Image", "Status", "Version"]
         
         for col in main_columns:
             des_dict.pop(col, None)
@@ -163,10 +162,10 @@ def add_variant():
         
         query = """
                 INSERT INTO ProductVariant(ProductVariantID, ProductID, Color, SellingPrice,
-                StockQuantity, Description, IsDeleted, Image, Status) 
-                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)
+                StockQuantity, Description, IsDeleted, Image, Status, Version) 
+                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """
-        cursor.execute(query, (ProductVariantID, ProductID, Color, SellingPrice, StockQuantity, Description, IsDeleted, Image, Status))
+        cursor.execute(query, (ProductVariantID, ProductID, Color, SellingPrice, StockQuantity, Description, IsDeleted, Image, Status, Version))
         db_conn.commit()
         return flask.jsonify({"message": "Success!"}), 201
     except Exception as e:
@@ -186,10 +185,11 @@ def update_variant(ID):
         SellingPrice = flask.request.json.get("SellingPrice")
         Image = flask.request.json.get("Image")
         Status = flask.request.json.get("Status")
+        Version = flask.request.json.get("Version")
         
         des_dict = flask.request.json.copy()
         
-        main_columns = ["ProductVariantID", "ProductID", "Color", "SellingPrice", "StockQuantity", "IsDeleted", "Image", "Status"]
+        main_columns = ["ProductVariantID", "ProductID", "Color", "SellingPrice", "StockQuantity", "IsDeleted", "Image", "Status", "Version"]
         
         for col in main_columns:
             des_dict.pop(col, None)
@@ -198,10 +198,10 @@ def update_variant(ID):
 
         query = """
                 UPDATE Productvariant SET ProductID = ?, Color = ?,
-                SellingPrice = ?, StockQuantity = ?, Description = ?, Image = ?, Status = ?
+                SellingPrice = ?, StockQuantity = ?, Description = ?, Image = ?, Status = ?, Version = ?
                 WHERE ProductVariantID = ?
                 """
-        cursor.execute(query, (ProductID, Color, SellingPrice, StockQuantity, Description, Image, Status, ID))
+        cursor.execute(query, (ProductID, Color, SellingPrice, StockQuantity, Description, Image, Status, Version, ID))
         db_conn.commit()
         
         return flask.jsonify({"message": "Success!"}), 200
