@@ -51,14 +51,16 @@ async function loadFeaturedProducts() {
             return;
         }
 
-        container.innerHTML = featured.map(p => {
+        container.innerHTML = featured.map((p, idx) => {
             const img = getFirstImage(p.Images) || PLACEHOLDER_IMG;
             const priceText = p.MinPrice === p.MaxPrice
                 ? formatPrice(p.MinPrice)
                 : formatPrice(p.MinPrice) + ' – ' + formatPrice(p.MaxPrice);
+            const rankClass = idx < 3 ? `rank-${idx + 1}` : 'rank-other';
 
             return `
             <div class="featured-card" onclick="window.location.href='/Product/Detail?id=${encodeURIComponent(p.ProductID)}'">
+                <span class="featured-card-rank ${rankClass}">${idx + 1}</span>
                 <div class="featured-card-img">
                     <img src="${escapeHtml(img)}" alt="${escapeHtml(p.ProductName)}" onerror="this.src='${PLACEHOLDER_IMG}'" loading="lazy">
                     <span class="featured-badge"><i class="bi bi-fire"></i> ${p.TotalSold} đã bán</span>
