@@ -141,7 +141,7 @@ async function placeOrder() {
             CustomerID: custId,
             EmployeeID: null,
             PaymentMethod: payMethod,
-            Status: 'Draft',
+            Status: 'Pending',
             TotalPrice: 0
         });
 
@@ -163,10 +163,10 @@ async function placeOrder() {
             }
         }
 
-        // 3. Checkout (deduct stock)
-        const checkoutRes = await apiPost('/bills/' + encodeURIComponent(billId) + '/checkout', {});
+        // 3. Confirm order (deduct stock)
+        const checkoutRes = await apiPost('/bills/' + encodeURIComponent(billId) + '/confirm', {});
 
-        if (checkoutRes.status === 200 && !checkoutRes.data.mess?.includes('out of stock')) {
+        if (checkoutRes.status === 200) {
             clearCart();
             showToast('Đặt hàng thành công!', 'success');
             setTimeout(() => { window.location.href = '/Home/Orders'; }, 1500);
