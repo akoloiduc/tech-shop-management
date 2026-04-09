@@ -73,7 +73,7 @@ async function loadOrdersPage() {
                         const img = d.Image || PLACEHOLDER_IMG;
                         const name = d.ProductName || d.ProductVariantID || '';
                         const color = d.Color || '';
-                        const version = d.VariantDescription || '';
+                        const version = d.VariantVersion || '';
                         const subtotal = (d.Price || 0) * (d.Num || 0);
                         return `
                         <div class="order-detail-item">
